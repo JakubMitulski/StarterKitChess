@@ -236,6 +236,7 @@ public class BoardManager {
 
     private Move validateMove(Coordinate from, Coordinate to) throws InvalidMoveException, KingInCheckException {
         Piece piece = board.getPieceAt(from);
+        Color opponentColor = calculateNextMoveColor();
 
         if (isCoordinateOutOfBand(to) || isCoordinateFromSameAsCoordinateTo(from, to)) {
             throw new InvalidMoveException();
@@ -244,9 +245,7 @@ public class BoardManager {
             throw new InvalidMoveException();
         }
 
-        Set allPossibleMoves = new PieceValidatorManager(piece, from).getAllPossibleMoves();
-
-        Piece[][] pieces = board.getPieces();
+        Set allPossibleMoves = new PieceValidatorManager(from, board, opponentColor).findAllPossibleMoves();
 
 
         // TODO please add implementation here
