@@ -2,6 +2,7 @@ package com.capgemini.chess.algorithms.implementation;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import com.capgemini.chess.algorithms.data.Coordinate;
@@ -13,9 +14,7 @@ import com.capgemini.chess.algorithms.data.enums.Piece;
 import com.capgemini.chess.algorithms.data.enums.PieceType;
 import com.capgemini.chess.algorithms.data.generated.Board;
 import com.capgemini.chess.algorithms.implementation.exceptions.InvalidMoveException;
-import com.capgemini.chess.algorithms.implementation.exceptions.InvalidPieceException;
 import com.capgemini.chess.algorithms.implementation.exceptions.KingInCheckException;
-import com.capgemini.chess.algorithms.implementation.validators.PieceValidator;
 import com.capgemini.chess.algorithms.implementation.validators.PieceValidatorManager;
 
 import static com.capgemini.chess.algorithms.implementation.validators.CoordinateValidator.isCoordinateOutOfBand;
@@ -245,11 +244,11 @@ public class BoardManager {
             throw new InvalidMoveException();
         }
 
-        Set allPossibleMoves = new PieceValidatorManager(from, board, opponentColor).findAllPossibleMoves();
+        Set<Move> allPossibleMoves = new PieceValidatorManager(from, board, opponentColor).findAllPossibleMoves();
 
+        Optional<Move> optionalMove = allPossibleMoves.stream().filter(move -> move.getTo() == to).findAny();
 
-        // TODO please add implementation here
-        return null;
+        return optionalMove.get();
     }
 
 

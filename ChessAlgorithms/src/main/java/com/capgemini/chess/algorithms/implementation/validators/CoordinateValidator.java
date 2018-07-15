@@ -18,4 +18,5 @@ public class CoordinateValidator {
         return fromX != toX || fromY != toY;
     }
 
+
 }
