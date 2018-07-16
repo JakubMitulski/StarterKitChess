@@ -18,9 +18,8 @@ public class KingValidator extends PieceValidator {
 
 
     @Override
-    public Set getMoves(Coordinate coordinateFrom) {
+    public Set getMoves() {
         Set possibleMoves = new HashSet<Move>();
-        Coordinate coordinate = super.coordinateFrom;
 
         //Move 1
         coordinate = new Coordinate(coordinateFrom.getX() + 1, coordinateFrom.getY());

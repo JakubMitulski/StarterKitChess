@@ -8,6 +8,7 @@ import com.capgemini.chess.algorithms.implementation.exceptions.InvalidMoveExcep
 import com.capgemini.chess.algorithms.implementation.exceptions.KingInCheckException;
 import com.capgemini.chess.algorithms.implementation.validators.KingValidator;
 import com.capgemini.chess.algorithms.implementation.validators.PieceValidator;
+import com.capgemini.chess.algorithms.implementation.validators.RookValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -236,7 +237,7 @@ public class BoardManager {
         Color opponentColor = calculateNextMoveColor();
         PieceValidator pieceValidator = null;
 
-
+        //TODO warunek sprawdzajacy czy na polu from stoi jakakolwiek figura
         if (isCoordinateOutOfBand(to) || isCoordinateFromSameAsCoordinateTo(from, to)) {
             throw new InvalidMoveException();
         }
@@ -248,8 +249,8 @@ public class BoardManager {
         switch (piece.getType()) {
             //case PAWN: pieceValidator = new PawnValidator();
             //break;
-            //case ROOK: pieceValidator = new RookValidator();
-            //break;
+            case ROOK: pieceValidator = new RookValidator(from, board, opponentColor);
+            break;
             //case KNIGHT: pieceValidator = new KnightValidator();
             //break;
             //case BISHOP: pieceValidator = new BishopValidator();
@@ -262,7 +263,7 @@ public class BoardManager {
         }
 
 
-        Set<Move> allPossibleMoves = pieceValidator.getMoves(from);
+        Set<Move> allPossibleMoves = pieceValidator.getMoves();
 
         Optional<Move> optionalMove = allPossibleMoves.stream().filter(move -> move.getTo() == to).findAny();
 

@@ -507,6 +507,7 @@ public class BoardManagerTest {
 		// when
 		BoardManager boardManager = new BoardManager(board);
 		boolean exceptionThrown = false;
+
 		try {
 			boardManager.performMove(new Coordinate(1, 1), new Coordinate(6, 6));
 		} catch (InvalidMoveException e) {

@@ -21,7 +21,7 @@ public abstract class PieceValidator {
         this.opponentColor = opponentColor;
     }
 
-    public abstract Set getMoves(Coordinate coordinate);
+    public abstract Set getMoves();
 
     public boolean isFieldEmpty(Coordinate coordinate) {
         Piece piece = board.getPieceAt(coordinate);
