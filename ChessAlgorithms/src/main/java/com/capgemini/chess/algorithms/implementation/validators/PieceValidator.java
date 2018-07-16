@@ -13,12 +13,12 @@ public abstract class PieceValidator {
 
     Coordinate coordinateFrom;
     private Board board;
-    private Color opponentColor;
+    private Color playerColor;
 
-    public PieceValidator(Coordinate coordinateFrom, Board board, Color opponentColor) {
+    public PieceValidator(Coordinate coordinateFrom, Board board, Color playerColor) {
         this.coordinateFrom = coordinateFrom;
         this.board = board;
-        this.opponentColor = opponentColor;
+        this.playerColor = playerColor;
     }
 
     public abstract Set getMoves();
@@ -28,9 +28,9 @@ public abstract class PieceValidator {
         return piece == null;
     }
 
-    public boolean isOpponentPiece(Coordinate coordinate) {
+    public boolean isPlayerPiece(Coordinate coordinate) {
         Color pieceColor = board.getPieceAt(coordinate).getColor();
-        return pieceColor == opponentColor;
+        return pieceColor == playerColor;
     }
 
     public Move setAttackMove(Coordinate coordinate) {
@@ -55,7 +55,7 @@ public abstract class PieceValidator {
     public Set addProperMove(Set possibleMoves, Coordinate coordinate) {
         if (isFieldEmpty(coordinate)) {
             possibleMoves.add(setAttackMove(coordinate));
-        } else if (isOpponentPiece(coordinate)) {
+        } else if (!isPlayerPiece(coordinate)) {
             possibleMoves.add(setCaptureMove(coordinate));
         }
         return possibleMoves;

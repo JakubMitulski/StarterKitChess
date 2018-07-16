@@ -12,8 +12,8 @@ public class KingValidator extends PieceValidator {
 
     private Coordinate coordinate;
 
-    public KingValidator(Coordinate coordinateFrom, Board board, Color opponentColor) {
-        super(coordinateFrom, board, opponentColor);
+    public KingValidator(Coordinate coordinateFrom, Board board, Color playerColor) {
+        super(coordinateFrom, board, playerColor);
     }
 
 

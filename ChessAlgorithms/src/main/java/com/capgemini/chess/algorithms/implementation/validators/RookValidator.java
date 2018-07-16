@@ -14,8 +14,8 @@ public class RookValidator extends PieceValidator {
     private int BOARD_END = 7;
     private Coordinate coordinate;
 
-    public RookValidator(Coordinate coordinateFrom, Board board, Color opponentColor) {
-        super(coordinateFrom, board, opponentColor);
+    public RookValidator(Coordinate coordinateFrom, Board board, Color playerColor) {
+        super(coordinateFrom, board, playerColor);
     }
 
 

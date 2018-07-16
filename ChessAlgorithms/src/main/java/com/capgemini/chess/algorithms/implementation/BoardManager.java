@@ -6,19 +6,14 @@ import com.capgemini.chess.algorithms.data.enums.*;
 import com.capgemini.chess.algorithms.data.generated.Board;
 import com.capgemini.chess.algorithms.implementation.exceptions.InvalidMoveException;
 import com.capgemini.chess.algorithms.implementation.exceptions.KingInCheckException;
-import com.capgemini.chess.algorithms.implementation.validators.BishopValidator;
-import com.capgemini.chess.algorithms.implementation.validators.KingValidator;
-import com.capgemini.chess.algorithms.implementation.validators.PieceValidator;
-import com.capgemini.chess.algorithms.implementation.validators.RookValidator;
+import com.capgemini.chess.algorithms.implementation.validators.*;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import static com.capgemini.chess.algorithms.implementation.validators.CoordinateValidator.isCoordinateFromSameAsCoordinateTo;
-import static com.capgemini.chess.algorithms.implementation.validators.CoordinateValidator.isCoordinateOutOfBand;
-import static com.capgemini.chess.algorithms.implementation.validators.CoordinateValidator.isEmptySpot;
+import static com.capgemini.chess.algorithms.implementation.validators.CoordinateValidator.*;
 
 /**
  * Class for managing of basic operations on the Chess Board.
@@ -236,10 +231,10 @@ public class BoardManager {
 
     private Move validateMove(Coordinate from, Coordinate to) throws InvalidMoveException, KingInCheckException {
 
-        if (isEmptySpot(from, board)){
+        if (isCoordinateOutOfBand(to) || isCoordinateOutOfBand(from)) {
             throw new InvalidMoveException();
         }
-        if (isCoordinateOutOfBand(to) || isCoordinateOutOfBand(from)) {
+        if (isEmptySpot(from, board)) {
             throw new InvalidMoveException();
         }
         if (isCoordinateFromSameAsCoordinateTo(from, to)) {
@@ -251,25 +246,26 @@ public class BoardManager {
             throw new InvalidMoveException();
         }
 
-        Color opponentColor = calculateNextMoveColor();
+        Color playerColor = calculateNextMoveColor();
         PieceValidator pieceValidator = null;
 
         switch (piece.getType()) {
             //case PAWN: pieceValidator = new PawnValidator();
             //break;
             case ROOK:
-                pieceValidator = new RookValidator(from, board, opponentColor);
+                pieceValidator = new RookValidator(from, board, playerColor);
                 break;
             //case KNIGHT: pieceValidator = new KnightValidator();
             //break;
             case BISHOP:
-                pieceValidator = new BishopValidator(from, board, opponentColor);
+                pieceValidator = new BishopValidator(from, board, playerColor);
                 break;
             case KING:
-                pieceValidator = new KingValidator(from, board, opponentColor);
+                pieceValidator = new KingValidator(from, board, playerColor);
                 break;
-            //case QUEEN: pieceValidator = new QueenValidator();
-            //break;
+            case QUEEN:
+                pieceValidator = new QueenValidator(from, board, playerColor);
+                break;
         }
 
 
