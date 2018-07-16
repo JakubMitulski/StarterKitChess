@@ -255,8 +255,9 @@ public class BoardManager {
             case ROOK:
                 pieceValidator = new RookValidator(from, board, playerColor);
                 break;
-            //case KNIGHT: pieceValidator = new KnightValidator();
-            //break;
+            case KNIGHT:
+                pieceValidator = new KnightValidator(from, board, playerColor);
+                break;
             case BISHOP:
                 pieceValidator = new BishopValidator(from, board, playerColor);
                 break;
