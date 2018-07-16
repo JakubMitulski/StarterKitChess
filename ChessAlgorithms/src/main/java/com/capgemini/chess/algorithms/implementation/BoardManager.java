@@ -18,6 +18,7 @@ import java.util.Set;
 
 import static com.capgemini.chess.algorithms.implementation.validators.CoordinateValidator.isCoordinateFromSameAsCoordinateTo;
 import static com.capgemini.chess.algorithms.implementation.validators.CoordinateValidator.isCoordinateOutOfBand;
+import static com.capgemini.chess.algorithms.implementation.validators.CoordinateValidator.isEmptySpot;
 
 /**
  * Class for managing of basic operations on the Chess Board.
@@ -235,7 +236,9 @@ public class BoardManager {
 
     private Move validateMove(Coordinate from, Coordinate to) throws InvalidMoveException, KingInCheckException {
 
-        //TODO warunek sprawdzajacy czy na polu from stoi jakakolwiek figura
+        if (isEmptySpot(from, board)){
+            throw new InvalidMoveException();
+        }
         if (isCoordinateOutOfBand(to) || isCoordinateOutOfBand(from)) {
             throw new InvalidMoveException();
         }

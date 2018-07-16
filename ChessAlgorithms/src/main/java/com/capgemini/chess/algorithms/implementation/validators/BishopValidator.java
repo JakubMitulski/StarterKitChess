@@ -21,41 +21,47 @@ public class BishopValidator extends PieceValidator {
     @Override
     public Set getMoves() {
         Set possibleMoves = new HashSet<Move>();
-        int conX = coordinateFrom.getX();
-        int conY = coordinateFrom.getY();
 
         //Move 1 - right-up direction
-        for (int i = conX; i < BOARD_END; i++) {
-            if (conY < BOARD_END) {
-                coordinate = new Coordinate(i + 1, conY + 1);
-                conY++;
+        int coordX = coordinateFrom.getX();
+        int coordY = coordinateFrom.getY();
+        for (int i = coordX; i < BOARD_END; i++) {
+            if (coordY < BOARD_END) {
+                coordinate = new Coordinate(i + 1, coordY + 1);
+                coordY++;
                 addProperMove(possibleMoves, coordinate);
             }
         }
 
         //Move 2 - left-up direction
-        for (int i = conX; i > BOARD_START; i--) {
-            if (conY < BOARD_END) {
-                coordinate = new Coordinate(Math.abs(i - 1), conY + 1);
-                conY++;
+        coordX = coordinateFrom.getX();
+        coordY = coordinateFrom.getY();
+        for (int i = coordX; i > BOARD_START; i--) {
+            if (coordY < BOARD_END) {
+                coordinate = new Coordinate(Math.abs(i - 1), coordY + 1);
+                coordY++;
                 addProperMove(possibleMoves, coordinate);
             }
         }
 
         //Move 3 - left-down direction
-        for (int i = conX; i > BOARD_START; i--) {
-            if (conY > BOARD_START) {
-                coordinate = new Coordinate(Math.abs(i - 1), Math.abs(conY - 1));
-                conY--;
+        coordX = coordinateFrom.getX();
+        coordY = coordinateFrom.getY();
+        for (int i = coordX; i > BOARD_START; i--) {
+            if (coordY > BOARD_START) {
+                coordinate = new Coordinate(Math.abs(i - 1), Math.abs(coordY - 1));
+                coordY--;
                 addProperMove(possibleMoves, coordinate);
             }
         }
 
         //Move 4 - right-down direction
-        for (int i = conX; i < BOARD_END; i++) {
-            if (conY > BOARD_START) {
-                coordinate = new Coordinate(i + 1, Math.abs(conY - 1));
-                conY--;
+        coordX = coordinateFrom.getX();
+        coordY = coordinateFrom.getY();
+        for (int i = coordX; i < BOARD_END; i++) {
+            if (coordY > BOARD_START) {
+                coordinate = new Coordinate(i + 1, Math.abs(coordY - 1));
+                coordY--;
                 addProperMove(possibleMoves, coordinate);
             }
         }

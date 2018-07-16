@@ -1,6 +1,7 @@
 package com.capgemini.chess.algorithms.implementation.validators;
 
 import com.capgemini.chess.algorithms.data.Coordinate;
+import com.capgemini.chess.algorithms.data.generated.Board;
 
 public class CoordinateValidator {
 
@@ -18,5 +19,8 @@ public class CoordinateValidator {
         return fromX == toX && fromY == toY;
     }
 
+    public static boolean isEmptySpot(Coordinate coordinate, Board board) {
+        return board.getPieceAt(coordinate) == null;
+    }
 
 }
