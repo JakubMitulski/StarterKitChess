@@ -1,24 +1,21 @@
 package com.capgemini.chess.algorithms.implementation;
 
+import com.capgemini.chess.algorithms.data.Coordinate;
+import com.capgemini.chess.algorithms.data.Move;
+import com.capgemini.chess.algorithms.data.enums.*;
+import com.capgemini.chess.algorithms.data.generated.Board;
+import com.capgemini.chess.algorithms.implementation.exceptions.InvalidMoveException;
+import com.capgemini.chess.algorithms.implementation.exceptions.KingInCheckException;
+import com.capgemini.chess.algorithms.implementation.validators.KingValidator;
+import com.capgemini.chess.algorithms.implementation.validators.PieceValidator;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import com.capgemini.chess.algorithms.data.Coordinate;
-import com.capgemini.chess.algorithms.data.Move;
-import com.capgemini.chess.algorithms.data.enums.BoardState;
-import com.capgemini.chess.algorithms.data.enums.Color;
-import com.capgemini.chess.algorithms.data.enums.MoveType;
-import com.capgemini.chess.algorithms.data.enums.Piece;
-import com.capgemini.chess.algorithms.data.enums.PieceType;
-import com.capgemini.chess.algorithms.data.generated.Board;
-import com.capgemini.chess.algorithms.implementation.exceptions.InvalidMoveException;
-import com.capgemini.chess.algorithms.implementation.exceptions.KingInCheckException;
-import com.capgemini.chess.algorithms.implementation.validators.PieceValidatorManager;
-
-import static com.capgemini.chess.algorithms.implementation.validators.CoordinateValidator.isCoordinateOutOfBand;
 import static com.capgemini.chess.algorithms.implementation.validators.CoordinateValidator.isCoordinateFromSameAsCoordinateTo;
+import static com.capgemini.chess.algorithms.implementation.validators.CoordinateValidator.isCoordinateOutOfBand;
 
 /**
  * Class for managing of basic operations on the Chess Board.
@@ -233,9 +230,12 @@ public class BoardManager {
         this.board.setPieceAt(null, lastMove.getTo());
     }
 
+
     private Move validateMove(Coordinate from, Coordinate to) throws InvalidMoveException, KingInCheckException {
         Piece piece = board.getPieceAt(from);
         Color opponentColor = calculateNextMoveColor();
+        PieceValidator pieceValidator = null;
+
 
         if (isCoordinateOutOfBand(to) || isCoordinateFromSameAsCoordinateTo(from, to)) {
             throw new InvalidMoveException();
@@ -244,7 +244,25 @@ public class BoardManager {
             throw new InvalidMoveException();
         }
 
-        Set<Move> allPossibleMoves = new PieceValidatorManager(from, board, opponentColor).findAllPossibleMoves();
+
+        switch (piece.getType()) {
+            //case PAWN: pieceValidator = new PawnValidator();
+            //break;
+            //case ROOK: pieceValidator = new RookValidator();
+            //break;
+            //case KNIGHT: pieceValidator = new KnightValidator();
+            //break;
+            //case BISHOP: pieceValidator = new BishopValidator();
+            //break;
+            case KING:
+                pieceValidator = new KingValidator(from, board, opponentColor);
+                break;
+            //case QUEEN: pieceValidator = new QueenValidator();
+            //break;
+        }
+
+
+        Set<Move> allPossibleMoves = pieceValidator.getMoves(from);
 
         Optional<Move> optionalMove = allPossibleMoves.stream().filter(move -> move.getTo() == to).findAny();
 

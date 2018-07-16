@@ -8,7 +8,7 @@ import com.capgemini.chess.algorithms.data.generated.Board;
 import java.util.HashSet;
 import java.util.Set;
 
-public class KingValidator extends PieceValidatorManager implements PieceValidator {
+public class KingValidator extends PieceValidator {
 
     private Coordinate coordinate;
 
@@ -20,6 +20,7 @@ public class KingValidator extends PieceValidatorManager implements PieceValidat
     @Override
     public Set getMoves(Coordinate coordinateFrom) {
         Set possibleMoves = new HashSet<Move>();
+        Coordinate coordinate = super.coordinateFrom;
 
         //Move 1
         coordinate = new Coordinate(coordinateFrom.getX() + 1, coordinateFrom.getY());
