@@ -6,6 +6,7 @@ import com.capgemini.chess.algorithms.data.enums.*;
 import com.capgemini.chess.algorithms.data.generated.Board;
 import com.capgemini.chess.algorithms.implementation.exceptions.InvalidMoveException;
 import com.capgemini.chess.algorithms.implementation.exceptions.KingInCheckException;
+import com.capgemini.chess.algorithms.implementation.validators.BishopValidator;
 import com.capgemini.chess.algorithms.implementation.validators.KingValidator;
 import com.capgemini.chess.algorithms.implementation.validators.PieceValidator;
 import com.capgemini.chess.algorithms.implementation.validators.RookValidator;
@@ -233,28 +234,34 @@ public class BoardManager {
 
 
     private Move validateMove(Coordinate from, Coordinate to) throws InvalidMoveException, KingInCheckException {
-        Piece piece = board.getPieceAt(from);
-        Color opponentColor = calculateNextMoveColor();
-        PieceValidator pieceValidator = null;
 
         //TODO warunek sprawdzajacy czy na polu from stoi jakakolwiek figura
-        if (isCoordinateOutOfBand(to) || isCoordinateFromSameAsCoordinateTo(from, to)) {
+        if (isCoordinateOutOfBand(to) || isCoordinateOutOfBand(from)) {
             throw new InvalidMoveException();
         }
+        if (isCoordinateFromSameAsCoordinateTo(from, to)) {
+            throw new InvalidMoveException();
+        }
+
+        Piece piece = board.getPieceAt(from);
         if (piece.getColor() != calculateNextMoveColor()) {
             throw new InvalidMoveException();
         }
 
+        Color opponentColor = calculateNextMoveColor();
+        PieceValidator pieceValidator = null;
 
         switch (piece.getType()) {
             //case PAWN: pieceValidator = new PawnValidator();
             //break;
-            case ROOK: pieceValidator = new RookValidator(from, board, opponentColor);
-            break;
+            case ROOK:
+                pieceValidator = new RookValidator(from, board, opponentColor);
+                break;
             //case KNIGHT: pieceValidator = new KnightValidator();
             //break;
-            //case BISHOP: pieceValidator = new BishopValidator();
-            //break;
+            case BISHOP:
+                pieceValidator = new BishopValidator(from, board, opponentColor);
+                break;
             case KING:
                 pieceValidator = new KingValidator(from, board, opponentColor);
                 break;
@@ -264,8 +271,14 @@ public class BoardManager {
 
 
         Set<Move> allPossibleMoves = pieceValidator.getMoves();
+        Optional<Move> optionalMove = allPossibleMoves.stream()
+                .filter(move -> move.getTo().getX() == to.getX())
+                .filter(move -> move.getTo().getY() == to.getY())
+                .findAny();
 
-        Optional<Move> optionalMove = allPossibleMoves.stream().filter(move -> move.getTo() == to).findAny();
+        if (!optionalMove.isPresent()) {
+            throw new InvalidMoveException();
+        }
 
         return optionalMove.get();
     }

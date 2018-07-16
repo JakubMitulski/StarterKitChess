@@ -45,6 +45,14 @@ public class KingValidator extends PieceValidator {
         coordinate = new Coordinate(coordinateFrom.getX(), Math.abs(coordinateFrom.getY() - 1));
         addProperMove(possibleMoves, coordinate);
 
+        //Move 7
+        coordinate = new Coordinate(coordinateFrom.getX() + 1, Math.abs(coordinateFrom.getY() - 1));
+        addProperMove(possibleMoves, coordinate);
+
+        //Move 8
+        coordinate = new Coordinate(Math.abs(coordinateFrom.getX() - 1), coordinateFrom.getY() + 1);
+        addProperMove(possibleMoves, coordinate);
+
         return possibleMoves;
     }
 }

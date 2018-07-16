@@ -55,8 +55,7 @@ public abstract class PieceValidator {
     public Set addProperMove(Set possibleMoves, Coordinate coordinate) {
         if (isFieldEmpty(coordinate)) {
             possibleMoves.add(setAttackMove(coordinate));
-        }
-        if (isOpponentPiece(coordinate)) {
+        } else if (isOpponentPiece(coordinate)) {
             possibleMoves.add(setCaptureMove(coordinate));
         }
         return possibleMoves;

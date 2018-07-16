@@ -15,7 +15,7 @@ public class CoordinateValidator {
         int fromY = from.getY();
         int toX = to.getX();
         int toY = to.getY();
-        return fromX != toX || fromY != toY;
+        return fromX == toX && fromY == toY;
     }
 
 
