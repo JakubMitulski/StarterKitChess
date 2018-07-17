@@ -29,8 +29,11 @@ public abstract class PieceValidator {
     }
 
     public boolean isPlayerPiece(Coordinate coordinate) {
-        Color pieceColor = board.getPieceAt(coordinate).getColor();
-        return pieceColor == playerColor;
+        if (!isFieldEmpty(coordinate)) {
+            Color pieceColor = board.getPieceAt(coordinate).getColor();
+            return pieceColor == playerColor;
+        }
+        return false;
     }
 
     public Move setAttackMove(Coordinate coordinate) {

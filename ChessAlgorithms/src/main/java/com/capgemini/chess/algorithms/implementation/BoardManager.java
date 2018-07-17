@@ -314,6 +314,8 @@ public class BoardManager {
     //Method duplicates board to allow king-check validation before move perform
     private Board duplicateBoard(Board board) {
         Board duplicatedBoard = new Board();
+        duplicatedBoard.setMoveHistory(board.getMoveHistory());
+        duplicatedBoard.setState(board.getState());
 
         for (int i = BOARD_START; i <= BOARD_END; i++) {
             for (int j = BOARD_START; j <= BOARD_END; j++) {

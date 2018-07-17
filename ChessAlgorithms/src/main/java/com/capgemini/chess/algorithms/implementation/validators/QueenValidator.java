@@ -28,25 +28,49 @@ public class QueenValidator extends PieceValidator {
         //Move 1 - X axis, + direction
         for (int i = conX; i < BOARD_END; i++) {
             coordinate = new Coordinate(i + 1, conY);
+            if (isPlayerPiece(coordinate)) {
+                break;
+            }
             addProperMove(possibleMoves, coordinate);
+            if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                break;
+            }
         }
 
         //Move 2 - X axis, - direction
         for (int i = conX; i > BOARD_START; i--) {
             coordinate = new Coordinate(i - 1, conY);
+            if (isPlayerPiece(coordinate)) {
+                break;
+            }
             addProperMove(possibleMoves, coordinate);
+            if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                break;
+            }
         }
 
         //Move 3 - Y axis, + direction
         for (int i = conY; i < BOARD_END; i++) {
             coordinate = new Coordinate(conX, i + 1);
+            if (isPlayerPiece(coordinate)) {
+                break;
+            }
             addProperMove(possibleMoves, coordinate);
+            if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                break;
+            }
         }
 
         //Move 4 - Y axis, - direction
         for (int i = conY; i > BOARD_START; i--) {
             coordinate = new Coordinate(conX, i - 1);
+            if (isPlayerPiece(coordinate)) {
+                break;
+            }
             addProperMove(possibleMoves, coordinate);
+            if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                break;
+            }
         }
 
         //Move 5 - right-up direction
@@ -55,8 +79,14 @@ public class QueenValidator extends PieceValidator {
         for (int i = coordX; i < BOARD_END; i++) {
             if (coordY < BOARD_END) {
                 coordinate = new Coordinate(i + 1, coordY + 1);
+                if (isPlayerPiece(coordinate)) {
+                    break;
+                }
                 coordY++;
                 addProperMove(possibleMoves, coordinate);
+                if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                    break;
+                }
             }
         }
 
@@ -66,8 +96,14 @@ public class QueenValidator extends PieceValidator {
         for (int i = coordX; i > BOARD_START; i--) {
             if (coordY < BOARD_END) {
                 coordinate = new Coordinate(Math.abs(i - 1), coordY + 1);
+                if (isPlayerPiece(coordinate)) {
+                    break;
+                }
                 coordY++;
                 addProperMove(possibleMoves, coordinate);
+                if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                    break;
+                }
             }
         }
 
@@ -77,8 +113,14 @@ public class QueenValidator extends PieceValidator {
         for (int i = coordX; i > BOARD_START; i--) {
             if (coordY > BOARD_START) {
                 coordinate = new Coordinate(Math.abs(i - 1), Math.abs(coordY - 1));
+                if (isPlayerPiece(coordinate)) {
+                    break;
+                }
                 coordY--;
                 addProperMove(possibleMoves, coordinate);
+                if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                    break;
+                }
             }
         }
 
@@ -88,8 +130,14 @@ public class QueenValidator extends PieceValidator {
         for (int i = coordX; i < BOARD_END; i++) {
             if (coordY > BOARD_START) {
                 coordinate = new Coordinate(i + 1, Math.abs(coordY - 1));
+                if (isPlayerPiece(coordinate)) {
+                    break;
+                }
                 coordY--;
                 addProperMove(possibleMoves, coordinate);
+                if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                    break;
+                }
             }
         }
 

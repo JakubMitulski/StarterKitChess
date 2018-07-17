@@ -29,25 +29,49 @@ public class RookValidator extends PieceValidator {
         //Move 1 - X axis, + direction
         for (int i = conX; i < BOARD_END; i++) {
             coordinate = new Coordinate(i + 1, conY);
+            if (isPlayerPiece(coordinate)) {
+                break;
+            }
             addProperMove(possibleMoves, coordinate);
+            if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                break;
+            }
         }
 
         //Move 2 - X axis, - direction
         for (int i = conX; i > BOARD_START; i--) {
             coordinate = new Coordinate(i - 1, conY);
+            if (isPlayerPiece(coordinate)) {
+                break;
+            }
             addProperMove(possibleMoves, coordinate);
+            if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                break;
+            }
         }
 
         //Move 3 - Y axis, + direction
         for (int i = conY; i < BOARD_END; i++) {
             coordinate = new Coordinate(conX, i + 1);
+            if (isPlayerPiece(coordinate)) {
+                break;
+            }
             addProperMove(possibleMoves, coordinate);
+            if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                break;
+            }
         }
 
         //Move 4 - Y axis, - direction
         for (int i = conY; i > BOARD_START; i--) {
             coordinate = new Coordinate(conX, i - 1);
+            if (isPlayerPiece(coordinate)) {
+                break;
+            }
             addProperMove(possibleMoves, coordinate);
+            if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                break;
+            }
         }
 
         return possibleMoves;

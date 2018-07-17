@@ -3,11 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="177196c3-f059-4ad2-b379-b00066053b03" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/data/generated/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/data/generated/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/BoardManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/BoardManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/exceptions/InvalidPieceException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/PawnValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/PawnValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/PieceValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/PieceValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/QueenValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/QueenValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/RookValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/RookValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/capgemini/chess/algorithms/data/generated/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capgemini/chess/algorithms/data/generated/Board.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/capgemini/chess/algorithms/implementation/BoardManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capgemini/chess/algorithms/implementation/BoardManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/capgemini/chess/algorithms/implementation/exceptions/InvalidPieceException.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,14 +36,14 @@
         <counts>
           <entry key="class" value="28" />
           <entry key="gitignore" value="1" />
-          <entry key="java" value="208" />
+          <entry key="java" value="226" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="28" />
-          <entry key="JAVA" value="208" />
+          <entry key="JAVA" value="226" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="XML" value="1" />
         </counts>
@@ -49,14 +51,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="8" />
-          <entry key="java" value="6850" />
+          <entry key="java" value="7003" />
           <entry key="txt" value="22" />
           <entry key="xml" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="6850" />
+          <entry key="JAVA" value="7003" />
           <entry key="PLAIN_TEXT" value="30" />
           <entry key="XML" value="4" />
         </counts>
@@ -66,10 +68,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/KingValidator.java">
+        <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/PieceValidator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="825">
-              <caret line="77" selection-start-line="77" selection-end-line="77" />
+            <state relative-caret-position="269">
+              <caret line="21" selection-start-line="21" selection-end-line="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,10 +80,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/PawnValidator.java">
+        <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/BoardManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="22" column="13" lean-forward="true" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+            <state relative-caret-position="219">
+              <caret line="253" selection-start-line="253" selection-end-line="253" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -89,11 +91,53 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/BoardManager.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/data/generated/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3775">
-              <caret line="374" selection-start-line="374" selection-end-line="374" />
+            <state relative-caret-position="283">
+              <caret line="66" selection-start-line="66" selection-end-line="66" />
+              <folding>
+                <element signature="e#698#699#0" expanded="true" />
+                <element signature="e#723#724#0" expanded="true" />
+                <element signature="e#778#779#0" expanded="true" />
+                <element signature="e#815#816#0" expanded="true" />
+                <element signature="e#1529#1530#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/data/enums/Piece.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="32" selection-start-line="32" selection-end-line="32" />
+              <folding>
+                <element signature="e#910#911#0" expanded="true" />
+                <element signature="e#938#939#0" expanded="true" />
+                <element signature="e#957#958#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/QueenValidator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="509">
+              <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/RookValidator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -104,83 +148,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/test/java/com/capgemini/chess/algorithms/implementation/BoardManagerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
-              <caret line="537" selection-start-line="537" selection-end-line="537" />
+            <state relative-caret-position="311">
+              <caret line="511" selection-start-line="511" selection-end-line="511" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/data/generated/Board.java">
+        <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/data/Coordinate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
+            <state relative-caret-position="169">
+              <caret line="23" selection-start-line="23" selection-end-line="23" />
               <folding>
-                <element signature="e#698#699#0" expanded="true" />
-                <element signature="e#723#724#0" expanded="true" />
-                <element signature="e#756#757#0" expanded="true" />
-                <element signature="e#776#777#0" expanded="true" />
-                <element signature="e#1130#1131#0" expanded="true" />
-                <element signature="e#1189#1190#0" expanded="true" />
-                <element signature="e#1379#1380#0" expanded="true" />
-                <element signature="e#1437#1438#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/KnightValidator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="775">
-              <caret line="76" column="1" lean-forward="true" selection-start-line="76" selection-start-column="1" selection-end-line="76" selection-end-column="1" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/exceptions/KingInCheckException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/BishopValidator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="775">
-              <caret line="61" selection-start-line="61" selection-end-line="61" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/QueenValidator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="775">
-              <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/CoordinateValidator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="10" column="16" lean-forward="true" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#261#262#0" expanded="true" />
+                <element signature="e#276#277#0" expanded="true" />
+                <element signature="e#313#314#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -195,6 +177,11 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>leaps</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -213,14 +200,15 @@
         <option value="$PROJECT_DIR$/ChessAlgorithms/src/test/java/com/capgemini/chess/algorithms/implementation/BoardManagerTest.java" />
         <option value="$PROJECT_DIR$/ChessAlgorithms/src/test/java/com/capgemini/chess/algorithms/implementation/Tester.java" />
         <option value="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/CoordinateValidator.java" />
-        <option value="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/RookValidator.java" />
-        <option value="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/QueenValidator.java" />
         <option value="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/BishopValidator.java" />
         <option value="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/KnightValidator.java" />
         <option value="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/KingValidator.java" />
-        <option value="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/PieceValidator.java" />
-        <option value="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/BoardManager.java" />
         <option value="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/PawnValidator.java" />
+        <option value="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/data/generated/Board.java" />
+        <option value="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/BoardManager.java" />
+        <option value="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/PieceValidator.java" />
+        <option value="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/RookValidator.java" />
+        <option value="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/QueenValidator.java" />
       </list>
     </option>
   </component>
@@ -315,6 +303,17 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="algorithms" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="generated" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StarterKitChess" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StarterKitChess" type="462c0819:PsiDirectoryNode" />
+              <item name="ChessAlgorithms" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="algorithms" type="462c0819:PsiDirectoryNode" />
               <item name="implementation" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -371,7 +370,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1531830528873" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1531836161988" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
@@ -505,34 +504,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="BoardManagerTest - 2018.07.17 at 13h 49m 05s.xml">
+    <history-entry file="BoardManagerTest - 2018.07.17 at 15h 09m 40s.xml">
       <configuration name="BoardManagerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BoardManagerTest - 2018.07.17 at 13h 52m 04s.xml">
+    <history-entry file="BoardManagerTest - 2018.07.17 at 15h 13m 57s.xml">
       <configuration name="BoardManagerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BoardManagerTest - 2018.07.17 at 13h 53m 54s.xml">
+    <history-entry file="BoardManagerTest - 2018.07.17 at 15h 16m 30s.xml">
       <configuration name="BoardManagerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BoardManagerTest - 2018.07.17 at 13h 56m 32s.xml">
+    <history-entry file="BoardManagerTest - 2018.07.17 at 15h 18m 27s.xml">
       <configuration name="BoardManagerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BoardManagerTest - 2018.07.17 at 13h 57m 10s.xml">
+    <history-entry file="BoardManagerTest - 2018.07.17 at 15h 20m 32s.xml">
       <configuration name="BoardManagerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BoardManagerTest - 2018.07.17 at 13h 58m 46s.xml">
+    <history-entry file="BoardManagerTest - 2018.07.17 at 15h 27m 15s.xml">
       <configuration name="BoardManagerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BoardManagerTest - 2018.07.17 at 13h 59m 34s.xml">
+    <history-entry file="BoardManagerTest - 2018.07.17 at 15h 53m 50s.xml">
       <configuration name="BoardManagerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BoardManagerTest - 2018.07.17 at 14h 06m 35s.xml">
+    <history-entry file="BoardManagerTest - 2018.07.17 at 15h 58m 28s.xml">
       <configuration name="BoardManagerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BoardManagerTest - 2018.07.17 at 14h 20m 39s.xml">
+    <history-entry file="BoardManagerTest - 2018.07.17 at 15h 59m 29s.xml">
       <configuration name="BoardManagerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BoardManagerTest - 2018.07.17 at 14h 28m 52s.xml">
+    <history-entry file="BoardManagerTest - 2018.07.17 at 16h 01m 52s.xml">
       <configuration name="BoardManagerTest" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -549,8 +548,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32879817" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3510759" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.398641" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.38618347" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3590034" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -604,9 +603,15 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/ChessAlgorithms/src/test/java/com/capgemini/chess/algorithms/implementation/BoardManagerTest.java</url>
-          <line>639</line>
+          <line>531</line>
           <properties />
-          <option name="timeStamp" value="19" />
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ChessAlgorithms/src/test/java/com/capgemini/chess/algorithms/implementation/BoardManagerTest.java</url>
+          <line>232</line>
+          <properties />
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -722,62 +727,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/data/Move.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="e#437#438#0" expanded="true" />
-            <element signature="e#460#461#0" expanded="true" />
-            <element signature="e#490#491#0" expanded="true" />
-            <element signature="e#506#507#0" expanded="true" />
-            <element signature="e#543#544#0" expanded="true" />
-            <element signature="e#562#563#0" expanded="true" />
-            <element signature="e#649#650#0" expanded="true" />
-            <element signature="e#672#673#0" expanded="true" />
-            <element signature="e#777#778#0" expanded="true" />
-            <element signature="e#812#813#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/data/Coordinate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#261#262#0" expanded="true" />
-            <element signature="e#276#277#0" expanded="true" />
-            <element signature="e#298#299#0" expanded="true" />
-            <element signature="e#313#314#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/Assert.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="38" selection-start-line="38" selection-end-line="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/PieceValidator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="60" selection-start-line="60" selection-end-line="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/RookValidator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="25" column="41" lean-forward="true" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -788,70 +741,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/data/enums/Piece.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="32" column="18" lean-forward="true" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
-          <folding>
-            <element signature="e#892#893#0" expanded="true" />
-            <element signature="e#910#911#0" expanded="true" />
-            <element signature="e#938#939#0" expanded="true" />
-            <element signature="e#957#958#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/CoordinateValidator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="16" lean-forward="true" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/exceptions/KingInCheckException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/data/generated/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
-          <folding>
-            <element signature="e#698#699#0" expanded="true" />
-            <element signature="e#723#724#0" expanded="true" />
-            <element signature="e#756#757#0" expanded="true" />
-            <element signature="e#776#777#0" expanded="true" />
-            <element signature="e#1130#1131#0" expanded="true" />
-            <element signature="e#1189#1190#0" expanded="true" />
-            <element signature="e#1379#1380#0" expanded="true" />
-            <element signature="e#1437#1438#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/BishopValidator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="775">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/QueenValidator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="775">
-          <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -872,10 +765,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/test/java/com/capgemini/chess/algorithms/implementation/BoardManagerTest.java">
+    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/KingValidator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="537" selection-start-line="537" selection-end-line="537" />
+        <state relative-caret-position="650">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -889,10 +785,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/KingValidator.java">
+    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/CoordinateValidator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="77" selection-start-line="77" selection-end-line="77" />
+        <state relative-caret-position="223">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/data/Move.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="e#437#438#0" expanded="true" />
+            <element signature="e#460#461#0" expanded="true" />
+            <element signature="e#490#491#0" expanded="true" />
+            <element signature="e#506#507#0" expanded="true" />
+            <element signature="e#543#544#0" expanded="true" />
+            <element signature="e#562#563#0" expanded="true" />
+            <element signature="e#649#650#0" expanded="true" />
+            <element signature="e#672#673#0" expanded="true" />
+            <element signature="e#777#778#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/BishopValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="61" selection-start-line="61" selection-end-line="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/data/generated/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
+          <folding>
+            <element signature="e#698#699#0" expanded="true" />
+            <element signature="e#723#724#0" expanded="true" />
+            <element signature="e#778#779#0" expanded="true" />
+            <element signature="e#815#816#0" expanded="true" />
+            <element signature="e#1529#1530#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/data/enums/Piece.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="e#910#911#0" expanded="true" />
+            <element signature="e#938#939#0" expanded="true" />
+            <element signature="e#957#958#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/PieceValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -901,8 +861,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/BoardManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3775">
-          <caret line="374" selection-start-line="374" selection-end-line="374" />
+        <state relative-caret-position="219">
+          <caret line="253" selection-start-line="253" selection-end-line="253" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/data/Coordinate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+          <folding>
+            <element signature="e#261#262#0" expanded="true" />
+            <element signature="e#276#277#0" expanded="true" />
+            <element signature="e#313#314#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/RookValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/test/java/com/capgemini/chess/algorithms/implementation/BoardManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="511" selection-start-line="511" selection-end-line="511" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/QueenValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

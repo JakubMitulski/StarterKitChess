@@ -30,6 +30,10 @@ public class Board {
 		return moveHistory;
 	}
 
+	public void setMoveHistory(List<Move> moveHistory) {
+		this.moveHistory = moveHistory;
+	}
+
 	public Piece[][] getPieces() {
 		return pieces;
 	}
