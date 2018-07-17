@@ -8,10 +8,7 @@ import com.capgemini.chess.algorithms.implementation.exceptions.InvalidMoveExcep
 import com.capgemini.chess.algorithms.implementation.exceptions.KingInCheckException;
 import com.capgemini.chess.algorithms.implementation.validators.*;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import static com.capgemini.chess.algorithms.implementation.validators.CoordinateValidator.*;
 
@@ -23,6 +20,8 @@ import static com.capgemini.chess.algorithms.implementation.validators.Coordinat
 public class BoardManager {
 
     private Board board = new Board();
+    private Coordinate whiteKingCoordinate = new Coordinate(4, 0);
+    private Coordinate blackKingCoordinate = new Coordinate(4, 7);
 
     public BoardManager() {
         initBoard();
@@ -71,7 +70,7 @@ public class BoardManager {
      *
      * @return state of the chess board
      */
-    public BoardState updateBoardState() {
+    public BoardState updateBoardState() throws InvalidMoveException {
 
         Color nextMoveColor = calculateNextMoveColor();
 
@@ -247,7 +246,64 @@ public class BoardManager {
         }
 
         Color playerColor = calculateNextMoveColor();
+//        PieceValidator pieceValidator = null;
+//
+//        switch (piece.getType()) {
+//            case PAWN:
+//                pieceValidator = new PawnValidator(from, board, playerColor);
+//                break;
+//            case ROOK:
+//                pieceValidator = new RookValidator(from, board, playerColor);
+//                break;
+//            case KNIGHT:
+//                pieceValidator = new KnightValidator(from, board, playerColor);
+//                break;
+//            case BISHOP:
+//                pieceValidator = new BishopValidator(from, board, playerColor);
+//                break;
+//            case KING:
+//                pieceValidator = new KingValidator(from, board, playerColor);
+//                break;
+//            case QUEEN:
+//                pieceValidator = new QueenValidator(from, board, playerColor);
+//                break;
+//        }
+
+
+        PieceValidator pieceValidator = callPieceValidator(from, playerColor);
+
+        Set<Move> allPossibleMoves = pieceValidator.getMoves();
+        Optional<Move> optionalMove = allPossibleMoves.stream()
+                .filter(move -> move.getTo().getX() == to.getX())
+                .filter(move -> move.getTo().getY() == to.getY())
+                .findAny();
+
+        if (!optionalMove.isPresent()) {
+            throw new InvalidMoveException();
+        }
+
+        Move move = optionalMove.get();
+
+        //Duplicate board and then perform move
+        Board duplicatedBoard = duplicateBoard(this.board);
+        this.board.setPieceAt(move.getMovedPiece(), move.getTo());
+        this.board.setPieceAt(null, move.getFrom());
+
+        //Throw exception in case of an error
+        if (isKingInCheck(playerColor)) {
+            throw new KingInCheckException();
+        }
+
+        //Revert move perform
+        this.board = duplicatedBoard;
+
+        return move;
+    }
+
+    private PieceValidator callPieceValidator(Coordinate from, Color playerColor) {
+
         PieceValidator pieceValidator = null;
+        Piece piece = board.getPieceAt(from);
 
         switch (piece.getType()) {
             case PAWN:
@@ -270,25 +326,64 @@ public class BoardManager {
                 break;
         }
 
+        return pieceValidator;
+    }
 
-        Set<Move> allPossibleMoves = pieceValidator.getMoves();
-        Optional<Move> optionalMove = allPossibleMoves.stream()
-                .filter(move -> move.getTo().getX() == to.getX())
-                .filter(move -> move.getTo().getY() == to.getY())
-                .findAny();
 
-        if (!optionalMove.isPresent()) {
-            throw new InvalidMoveException();
+    //Method duplicates board to allow king-check validation before move perform
+    private Board duplicateBoard(Board board) {
+        int BOARD_START = 0;
+        int BOARD_END = 7;
+
+        Board duplicatedBoard = new Board();
+
+        for (int i = BOARD_START; i <= BOARD_END; i++) {
+            for (int j = BOARD_START; j <= BOARD_END; j++) {
+                Coordinate coordinate = new Coordinate(i, j);
+                Piece piece = board.getPieceAt(coordinate);
+                duplicatedBoard.setPieceAt(piece, coordinate);
+            }
         }
 
-        return optionalMove.get();
+        return duplicatedBoard;
     }
 
 
     private boolean isKingInCheck(Color kingColor) {
+        int BOARD_START = 0;
+        int BOARD_END = 7;
+        Coordinate kingCoordinate;
+        Set<Move> moves = new HashSet<>();
 
-        // TODO please add implementation here
-        return false;
+        if (kingColor == Color.WHITE) {
+            kingCoordinate = whiteKingCoordinate;
+        } else {
+            kingCoordinate = blackKingCoordinate;
+        }
+
+        for (int i = BOARD_START; i <= BOARD_END; i++) {
+            for (int j = BOARD_START; j <= BOARD_END; j++) {
+
+                Coordinate coordinate = new Coordinate(i, j);
+                Piece piece = board.getPieceAt(coordinate);
+
+                if (piece != null) {
+                    if (piece.getColor() != kingColor) {
+                        Color playerColor = piece.getColor();
+
+                        moves = callPieceValidator(coordinate, playerColor).getMoves();
+                    }
+                }
+            }
+        }
+
+        Optional<Move> optionalMove = moves.stream()
+                .filter(move -> move.getType() == MoveType.CAPTURE)
+                .filter(move -> move.getTo().getX() == kingCoordinate.getX())
+                .filter(move -> move.getTo().getY() == kingCoordinate.getY())
+                .findAny();
+
+        return optionalMove.isPresent();
     }
 
     private boolean isAnyMoveValid(Color nextMoveColor) {
