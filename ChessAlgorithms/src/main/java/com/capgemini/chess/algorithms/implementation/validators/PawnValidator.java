@@ -27,7 +27,7 @@ public class PawnValidator extends PieceValidator {
         int coordY = coordinateFrom.getY();
 
         //Move 1: first move ever, up direction, +2 spots
-        if (coordY == 1) {
+        if (coordY == 1 && playerColor == Color.WHITE) {
             coordinate = new Coordinate(coordX, coordY + 2);
             if (isFieldEmpty(coordinate)) {
                 addProperMove(possibleMoves, coordinate);
@@ -35,7 +35,7 @@ public class PawnValidator extends PieceValidator {
         }
 
         //Move 2: first move ever, down direction, -2 spots
-        if (coordY == 6) {
+        if (coordY == 6 && playerColor == Color.BLACK) {
             coordinate = new Coordinate(coordX, coordY - 2);
             if (isFieldEmpty(coordinate)) {
                 addProperMove(possibleMoves, coordinate);
