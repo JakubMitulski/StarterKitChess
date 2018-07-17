@@ -8,6 +8,8 @@ import com.capgemini.chess.algorithms.data.generated.Board;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.capgemini.chess.algorithms.implementation.validators.CoordinateValidator.isCoordinateOutOfBand;
+
 public class KingValidator extends PieceValidator {
 
     private Coordinate coordinate;
@@ -20,38 +22,56 @@ public class KingValidator extends PieceValidator {
     @Override
     public Set getMoves() {
         Set possibleMoves = new HashSet<Move>();
+        int coordX = coordinateFrom.getX();
+        int coordY = coordinateFrom.getY();
 
         //Move 1
-        coordinate = new Coordinate(coordinateFrom.getX() + 1, coordinateFrom.getY());
-        addProperMove(possibleMoves, coordinate);
+        coordinate = new Coordinate(coordX + 1, coordY);
+        if (!isCoordinateOutOfBand(coordinate)) {
+            addProperMove(possibleMoves, coordinate);
+        }
 
         //Move 2
-        coordinate = new Coordinate(coordinateFrom.getX() + 1, coordinateFrom.getY() + 1);
-        addProperMove(possibleMoves, coordinate);
+        coordinate = new Coordinate(coordX + 1, coordY + 1);
+        if (!isCoordinateOutOfBand(coordinate)) {
+            addProperMove(possibleMoves, coordinate);
+        }
 
         //Move 3
-        coordinate = new Coordinate(coordinateFrom.getX(), coordinateFrom.getY() + 1);
-        addProperMove(possibleMoves, coordinate);
+        coordinate = new Coordinate(coordX, coordY + 1);
+        if (!isCoordinateOutOfBand(coordinate)) {
+            addProperMove(possibleMoves, coordinate);
+        }
 
         //Move 4
-        coordinate = new Coordinate(Math.abs(coordinateFrom.getX() - 1), coordinateFrom.getY());
-        addProperMove(possibleMoves, coordinate);
+        coordinate = new Coordinate(coordX - 1, coordY);
+        if (!isCoordinateOutOfBand(coordinate)) {
+            addProperMove(possibleMoves, coordinate);
+        }
 
         //Move 5
-        coordinate = new Coordinate(Math.abs(coordinateFrom.getX() - 1), Math.abs(coordinateFrom.getY() - 1));
-        addProperMove(possibleMoves, coordinate);
+        coordinate = new Coordinate(coordX - 1, coordY - 1);
+        if (!isCoordinateOutOfBand(coordinate)) {
+            addProperMove(possibleMoves, coordinate);
+        }
 
         //Move 6
-        coordinate = new Coordinate(coordinateFrom.getX(), Math.abs(coordinateFrom.getY() - 1));
-        addProperMove(possibleMoves, coordinate);
+        coordinate = new Coordinate(coordX, coordY - 1);
+        if (!isCoordinateOutOfBand(coordinate)) {
+            addProperMove(possibleMoves, coordinate);
+        }
 
         //Move 7
-        coordinate = new Coordinate(coordinateFrom.getX() + 1, Math.abs(coordinateFrom.getY() - 1));
-        addProperMove(possibleMoves, coordinate);
+        coordinate = new Coordinate(coordX + 1, coordY - 1);
+        if (!isCoordinateOutOfBand(coordinate)) {
+            addProperMove(possibleMoves, coordinate);
+        }
 
         //Move 8
-        coordinate = new Coordinate(Math.abs(coordinateFrom.getX() - 1), coordinateFrom.getY() + 1);
-        addProperMove(possibleMoves, coordinate);
+        coordinate = new Coordinate(coordX - 1, coordY + 1);
+        if (!isCoordinateOutOfBand(coordinate)) {
+            addProperMove(possibleMoves, coordinate);
+        }
 
         return possibleMoves;
     }
