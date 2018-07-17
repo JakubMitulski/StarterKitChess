@@ -250,8 +250,9 @@ public class BoardManager {
         PieceValidator pieceValidator = null;
 
         switch (piece.getType()) {
-            //case PAWN: pieceValidator = new PawnValidator();
-            //break;
+            case PAWN:
+                pieceValidator = new PawnValidator(from, board, playerColor);
+                break;
             case ROOK:
                 pieceValidator = new RookValidator(from, board, playerColor);
                 break;

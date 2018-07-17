@@ -12,8 +12,8 @@ import java.util.Set;
 public abstract class PieceValidator {
 
     Coordinate coordinateFrom;
-    private Board board;
-    private Color playerColor;
+    Board board;
+    Color playerColor;
 
     public PieceValidator(Coordinate coordinateFrom, Board board, Color playerColor) {
         this.coordinateFrom = coordinateFrom;
