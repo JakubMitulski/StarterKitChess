@@ -16,7 +16,7 @@ public abstract class PieceValidator {
     Board board;
     Color playerColor;
 
-    public PieceValidator(Coordinate coordinateFrom, Board board, Color playerColor) {
+    PieceValidator(Coordinate coordinateFrom, Board board, Color playerColor) {
         this.coordinateFrom = coordinateFrom;
         this.board = board;
         this.playerColor = playerColor;
@@ -50,14 +50,12 @@ public abstract class PieceValidator {
         return move;
     }
 
-    //set possiblemoves wyrzucic do pola lub innej zmiennej
-    public Set addProperMove(Set possibleMoves, Coordinate coordinate) {
+    void addProperMove(Set possibleMoves, Coordinate coordinate) {
         if (isEmptySpot(coordinate, board)) {
             possibleMoves.add(setAttackMove(coordinate));
         } else if (!isPlayerPiece(coordinate)) {
             possibleMoves.add(setCaptureMove(coordinate));
         }
-        return possibleMoves;
     }
 
 }
