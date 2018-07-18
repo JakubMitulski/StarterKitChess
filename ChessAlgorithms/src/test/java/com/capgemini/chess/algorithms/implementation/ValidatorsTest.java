@@ -7,6 +7,7 @@ import com.capgemini.chess.algorithms.data.enums.Piece;
 import com.capgemini.chess.algorithms.data.generated.Board;
 import com.capgemini.chess.algorithms.implementation.validators.BishopValidator;
 import com.capgemini.chess.algorithms.implementation.validators.KingValidator;
+import com.capgemini.chess.algorithms.implementation.validators.KnightValidator;
 import org.junit.Test;
 
 import java.util.Set;
@@ -16,7 +17,7 @@ import static junit.framework.TestCase.assertEquals;
 public class ValidatorsTest {
 
     @Test
-    public void shouldGetAllPossibleMovesOfBishop(){
+    public void shouldGetAllPossibleMovesOfBishop() {
         //Given
         Board board = new Board();
         board.setPieceAt(Piece.WHITE_BISHOP, new Coordinate(3, 3));
@@ -31,7 +32,7 @@ public class ValidatorsTest {
     }
 
     @Test
-    public void shouldGetAllPossibleMovesOfKing(){
+    public void shouldGetAllPossibleMovesOfKing() {
         //Given
         Board board = new Board();
         board.setPieceAt(Piece.BLACK_KING, new Coordinate(3, 0));
@@ -43,5 +44,21 @@ public class ValidatorsTest {
 
         //Then
         assertEquals(4, allKingMoves.size());
+    }
+
+    @Test
+    public void shouldGetAllPossibleMovesOfKnight() {
+        //Given
+        Board board = new Board();
+        board.setPieceAt(Piece.WHITE_KNIGHT, new Coordinate(3, 3));
+        board.setPieceAt(Piece.WHITE_PAWN, new Coordinate(4, 1));
+        board.setPieceAt(Piece.WHITE_PAWN, new Coordinate(5, 2));
+        board.setPieceAt(Piece.BLACK_PAWN, new Coordinate(4, 5));
+
+        //When
+        Set<Move> allKnightMoves = new KnightValidator(new Coordinate(3, 3), board, Color.WHITE).getMoves();
+
+        //Then
+        assertEquals(6, allKnightMoves.size());
     }
 }
