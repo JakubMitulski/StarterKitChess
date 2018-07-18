@@ -12,7 +12,7 @@ import java.util.Set;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class PieceValidatorsTest {
+public class PiecesValidatorsTest {
 
     @Test
     public void shouldGetAllPossibleMovesOfBishop() {
