@@ -865,4 +865,26 @@ public class BoardManagerTest {
         }
         return counter;
     }
+
+    @Test
+    public void testInvalidMoveKingWouldBeInCheck() {
+        // given
+        Board board = new Board();
+        board.setPieceAt(Piece.BLACK_KNIGHT, new Coordinate(2, 1));
+        board.setPieceAt(Piece.BLACK_KING, new Coordinate(2, 2));
+        board.setPieceAt(Piece.WHITE_ROOK, new Coordinate(2, 0));
+        board.setPieceAt(Piece.WHITE_KING, new Coordinate(4, 1));
+
+        // when
+        BoardManager boardManager = new BoardManager(board);
+        boolean exceptionThrown = false;
+        try {
+            boardManager.performMove(new Coordinate(4, 1), new Coordinate(4, 0));
+        } catch (InvalidMoveException e) {
+            exceptionThrown = e instanceof KingInCheckException;
+        }
+
+        // then
+        assertTrue(exceptionThrown);
+    }
 }
