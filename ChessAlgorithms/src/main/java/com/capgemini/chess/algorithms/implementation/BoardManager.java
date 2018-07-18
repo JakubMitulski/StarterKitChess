@@ -230,7 +230,7 @@ public class BoardManager {
     }
 
 
-    private Move validateMove(Coordinate from, Coordinate to) throws InvalidMoveException, KingInCheckException {
+    private Move validateMove(Coordinate from, Coordinate to) throws InvalidMoveException {
 
         if (isCoordinateOutOfBand(to) || isCoordinateOutOfBand(from)) {
             throw new InvalidMoveException();
@@ -268,7 +268,7 @@ public class BoardManager {
         this.board.setPieceAt(move.getMovedPiece(), move.getTo());
         this.board.setPieceAt(null, move.getFrom());
 
-        //Throw exception in case of an error
+        //Throw exception in case of check
         if (isKingInCheck(playerColor)) {
             throw new KingInCheckException();
         }
@@ -342,7 +342,8 @@ public class BoardManager {
 
                 if (piece != null && piece.getColor() != kingColor) {
                     Color playerColor = piece.getColor();
-                    moves = callPieceValidator(coordinate, playerColor).getMoves();
+                    Set<Move> pieceMoves = callPieceValidator(coordinate, playerColor).getMoves();
+                    moves.addAll(pieceMoves);
                 }
 
             }
@@ -374,8 +375,35 @@ public class BoardManager {
 
     private boolean isAnyMoveValid(Color nextMoveColor) {
 
-        // TODO please add implementation here
+        for (int i = BOARD_START; i <= BOARD_END; i++) {
+            for (int j = BOARD_START; j <= BOARD_END; j++) {
 
+                Coordinate coordinate = new Coordinate(i, j);
+                Piece piece = board.getPieceAt(coordinate);
+
+                if (piece != null && piece.getColor() == nextMoveColor) {
+
+                    Set<Move> moves = callPieceValidator(coordinate, nextMoveColor).getMoves();
+
+                    for (Move move : moves) {
+
+                        //Duplicate board and then perform move
+                        Board duplicatedBoard = duplicateBoard(this.board);
+                        this.board.setPieceAt(move.getMovedPiece(), move.getTo());
+                        this.board.setPieceAt(null, move.getFrom());
+
+                        //Throw exception in case of check
+                        if (!isKingInCheck(nextMoveColor)) {
+                            return true;
+                        }
+
+                        //Revert move perform
+                        this.board = duplicatedBoard;
+                    }
+
+                }
+            }
+        }
         return false;
     }
 
