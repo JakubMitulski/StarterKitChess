@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="177196c3-f059-4ad2-b379-b00066053b03" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ChessAlgorithms/src/test/java/com/capgemini/chess/algorithms/implementation/CoordinateValidatorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/BoardManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/BoardManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/CoordinateValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/CoordinateValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/capgemini/chess/algorithms/implementation/BoardManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capgemini/chess/algorithms/implementation/BoardManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/capgemini/chess/algorithms/implementation/validators/CoordinateValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capgemini/chess/algorithms/implementation/validators/CoordinateValidator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/capgemini/chess/algorithms/implementation/BoardManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/capgemini/chess/algorithms/implementation/BoardManagerTest.class" afterDir="false" />
-    </list>
+    <list default="true" id="177196c3-f059-4ad2-b379-b00066053b03" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,14 +28,14 @@
         <counts>
           <entry key="class" value="31" />
           <entry key="gitignore" value="1" />
-          <entry key="java" value="294" />
+          <entry key="java" value="298" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="31" />
-          <entry key="JAVA" value="294" />
+          <entry key="JAVA" value="298" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="XML" value="1" />
         </counts>
@@ -68,23 +60,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/CoordinateValidator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="24" column="73" lean-forward="true" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="73" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/test/java/com/capgemini/chess/algorithms/implementation/CoordinateValidatorTest.java">
+        <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/QueenValidator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="657">
-              <caret line="57" column="30" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
+            <state relative-caret-position="375">
+              <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -301,7 +281,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1531906559630" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1531907166697" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
@@ -409,8 +389,8 @@
       <list>
         <item itemvalue="JUnit.PieceValidatorTest" />
         <item itemvalue="JUnit.PiecesValidatorsTest" />
-        <item itemvalue="JUnit.BoardManagerTest" />
         <item itemvalue="JUnit.CoordinateValidatorTest" />
+        <item itemvalue="JUnit.BoardManagerTest" />
         <item itemvalue="JUnit.CoordinateValidatorTest.shouldReturnTrueWhenSpotIsEmpty" />
       </list>
     </recent_temporary>
@@ -429,36 +409,45 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="PieceValidatorTest_shouldSetCaptureMove - 2018.07.18 at 11h 11m 39s.xml">
-      <configuration name="PieceValidatorTest.shouldSetCaptureMove" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BoardManagerTest - 2018.07.18 at 11h 13m 18s.xml">
-      <configuration name="BoardManagerTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BoardManagerTest - 2018.07.18 at 11h 14m 07s.xml">
-      <configuration name="BoardManagerTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BoardManagerTest - 2018.07.18 at 11h 15m 27s.xml">
-      <configuration name="BoardManagerTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="PiecesValidatorsTest - 2018.07.18 at 11h 15m 38s.xml">
-      <configuration name="PiecesValidatorsTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="PieceValidatorTest - 2018.07.18 at 11h 15m 44s.xml">
-      <configuration name="PieceValidatorTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BoardManagerTest - 2018.07.18 at 11h 22m 12s.xml">
-      <configuration name="BoardManagerTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CoordinateValidatorTest_shouldReturnTrueIfCoordinateIsOutOfBand - 2018.07.18 at 11h 26m 51s.xml">
-      <configuration name="CoordinateValidatorTest.shouldReturnTrueIfCoordinateIsOutOfBand" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CoordinateValidatorTest_shouldReturnTrueWhenCoordinatesAreEqual - 2018.07.18 at 11h 29m 00s.xml">
-      <configuration name="CoordinateValidatorTest.shouldReturnTrueWhenCoordinatesAreEqual" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="CoordinateValidatorTest_shouldReturnTrueWhenCoordinatesAreEqual - 2018.07.18 at 11h 30m 24s.xml">
       <configuration name="CoordinateValidatorTest.shouldReturnTrueWhenCoordinatesAreEqual" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="CoordinateValidatorTest_shouldReturnTrueWhenSpotIsEmpty - 2018.07.18 at 11h 34m 43s.xml">
+      <configuration name="CoordinateValidatorTest.shouldReturnTrueWhenSpotIsEmpty" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CoordinateValidatorTest - 2018.07.18 at 11h 34m 54s.xml">
+      <configuration name="CoordinateValidatorTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CoordinateValidatorTest - 2018.07.18 at 11h 35m 32s.xml">
+      <configuration name="CoordinateValidatorTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CoordinateValidatorTest - 2018.07.18 at 11h 35m 36s.xml">
+      <configuration name="CoordinateValidatorTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CoordinateValidatorTest - 2018.07.18 at 11h 35m 39s.xml">
+      <configuration name="CoordinateValidatorTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CoordinateValidatorTest - 2018.07.18 at 11h 35m 42s.xml">
+      <configuration name="CoordinateValidatorTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BoardManagerTest - 2018.07.18 at 11h 35m 51s.xml">
+      <configuration name="BoardManagerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PiecesValidatorsTest - 2018.07.18 at 11h 36m 01s.xml">
+      <configuration name="PiecesValidatorsTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PieceValidatorTest - 2018.07.18 at 11h 36m 15s.xml">
+      <configuration name="PieceValidatorTest" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -477,7 +466,7 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.31030577" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3295583" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3295583" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
@@ -772,16 +761,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/QueenValidator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="126" column="9" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/RookValidator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="453">
@@ -799,16 +778,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/test/java/com/capgemini/chess/algorithms/implementation/PieceValidatorTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="59" selection-start-line="59" selection-end-line="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/BoardManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-9175">
@@ -816,13 +785,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/test/java/com/capgemini/chess/algorithms/implementation/BoardManagerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
@@ -846,10 +808,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/test/java/com/capgemini/chess/algorithms/implementation/BoardManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/test/java/com/capgemini/chess/algorithms/implementation/PieceValidatorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1475">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/test/java/com/capgemini/chess/algorithms/implementation/PiecesValidatorsTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1550">
+        <state relative-caret-position="500">
           <caret line="20" column="67" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="20" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/test/java/com/capgemini/chess/algorithms/implementation/CoordinateValidatorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1375">
+          <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -866,10 +855,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/test/java/com/capgemini/chess/algorithms/implementation/CoordinateValidatorTest.java">
+    <entry file="file://$PROJECT_DIR$/ChessAlgorithms/src/main/java/com/capgemini/chess/algorithms/implementation/validators/QueenValidator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="657">
-          <caret line="57" column="30" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
+        <state relative-caret-position="375">
+          <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

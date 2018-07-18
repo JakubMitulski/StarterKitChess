@@ -8,13 +8,7 @@ import com.capgemini.chess.algorithms.data.generated.Board;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.capgemini.chess.algorithms.implementation.validators.CoordinateValidator.isEmptySpot;
-
 public class QueenValidator extends PieceValidator {
-
-    private int BOARD_START = 0;
-    private int BOARD_END = 7;
-    private Coordinate coordinate;
 
     public QueenValidator(Coordinate coordinateFrom, Board board, Color playerColor) {
         super(coordinateFrom, board, playerColor);
@@ -23,125 +17,12 @@ public class QueenValidator extends PieceValidator {
     @Override
     public Set getMoves() {
         Set possibleMoves = new HashSet<Move>();
-        int conX = coordinateFrom.getX();
-        int conY = coordinateFrom.getY();
 
+        Set verticalAndHorizontalMoves = new RookValidator(coordinateFrom, board, playerColor).getMoves();
+        Set diagonalMoves = new BishopValidator(coordinateFrom, board, playerColor).getMoves();
 
-        //Move 1 - X axis, + direction
-        for (int i = conX; i < BOARD_END; i++) {
-            coordinate = new Coordinate(i + 1, conY);
-            if (isPlayerPiece(coordinate)) {
-                break;
-            }
-            addProperMove(possibleMoves, coordinate);
-            if (!isEmptySpot(coordinate, board)) {
-                break;
-            }
-        }
-
-        //Move 2 - X axis, - direction
-        for (int i = conX; i > BOARD_START; i--) {
-            coordinate = new Coordinate(i - 1, conY);
-            if (isPlayerPiece(coordinate)) {
-                break;
-            }
-            addProperMove(possibleMoves, coordinate);
-            if (!isEmptySpot(coordinate, board)) {
-                break;
-            }
-        }
-
-        //Move 3 - Y axis, + direction
-        for (int i = conY; i < BOARD_END; i++) {
-            coordinate = new Coordinate(conX, i + 1);
-            if (isPlayerPiece(coordinate)) {
-                break;
-            }
-            addProperMove(possibleMoves, coordinate);
-            if (!isEmptySpot(coordinate, board)) {
-                break;
-            }
-        }
-
-        //Move 4 - Y axis, - direction
-        for (int i = conY; i > BOARD_START; i--) {
-            coordinate = new Coordinate(conX, i - 1);
-            if (isPlayerPiece(coordinate)) {
-                break;
-            }
-            addProperMove(possibleMoves, coordinate);
-            if (!isEmptySpot(coordinate, board)) {
-                break;
-            }
-        }
-
-        //Move 5 - right-up direction
-        int coordX = coordinateFrom.getX();
-        int coordY = coordinateFrom.getY();
-        for (int i = coordX; i < BOARD_END; i++) {
-            if (coordY < BOARD_END) {
-                coordinate = new Coordinate(i + 1, coordY + 1);
-                if (isPlayerPiece(coordinate)) {
-                    break;
-                }
-                coordY++;
-                addProperMove(possibleMoves, coordinate);
-                if (!isEmptySpot(coordinate, board)) {
-                    break;
-                }
-            }
-        }
-
-        //Move 6 - left-up direction
-        coordX = coordinateFrom.getX();
-        coordY = coordinateFrom.getY();
-        for (int i = coordX; i > BOARD_START; i--) {
-            if (coordY < BOARD_END) {
-                coordinate = new Coordinate(Math.abs(i - 1), coordY + 1);
-                if (isPlayerPiece(coordinate)) {
-                    break;
-                }
-                coordY++;
-                addProperMove(possibleMoves, coordinate);
-                if (!isEmptySpot(coordinate, board)) {
-                    break;
-                }
-            }
-        }
-
-        //Move 7 - left-down direction
-        coordX = coordinateFrom.getX();
-        coordY = coordinateFrom.getY();
-        for (int i = coordX; i > BOARD_START; i--) {
-            if (coordY > BOARD_START) {
-                coordinate = new Coordinate(Math.abs(i - 1), Math.abs(coordY - 1));
-                if (isPlayerPiece(coordinate)) {
-                    break;
-                }
-                coordY--;
-                addProperMove(possibleMoves, coordinate);
-                if (!isEmptySpot(coordinate, board)) {
-                    break;
-                }
-            }
-        }
-
-        //Move 8 - right-down direction
-        coordX = coordinateFrom.getX();
-        coordY = coordinateFrom.getY();
-        for (int i = coordX; i < BOARD_END; i++) {
-            if (coordY > BOARD_START) {
-                coordinate = new Coordinate(i + 1, Math.abs(coordY - 1));
-                if (isPlayerPiece(coordinate)) {
-                    break;
-                }
-                coordY--;
-                addProperMove(possibleMoves, coordinate);
-                if (!isEmptySpot(coordinate, board)) {
-                    break;
-                }
-            }
-        }
+        possibleMoves.addAll(verticalAndHorizontalMoves);
+        possibleMoves.addAll(diagonalMoves);
 
         return possibleMoves;
     }
