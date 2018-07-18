@@ -19,6 +19,7 @@ import static org.junit.Assert.*;
  * Test class for testing {@link BoardManager}
  *
  * @author Michal Bejm
+ * @author Jakub Mitulski
  */
 public class BoardManagerTest {
 
@@ -268,7 +269,7 @@ public class BoardManagerTest {
     }
 
     @Test
-    public void testPerformMoveEnPassant() throws InvalidMoveException {
+    public void testPerformMoveEnPassantForWhite() throws InvalidMoveException {
         // given
         Board board = new Board();
         BoardManager boardManager = new BoardManager(board);
@@ -276,6 +277,8 @@ public class BoardManagerTest {
         board.getMoveHistory().add(createDummyMove(board));
         board.setPieceAt(Piece.WHITE_PAWN, new Coordinate(1, 4));
         board.setPieceAt(Piece.BLACK_PAWN, new Coordinate(2, 6));
+        board.setPieceAt(Piece.WHITE_KING, new Coordinate(4, 0));
+        board.setPieceAt(Piece.BLACK_KING, new Coordinate(4, 7));
         boardManager.performMove(new Coordinate(2, 6), new Coordinate(2, 4));
 
         // when
@@ -284,6 +287,29 @@ public class BoardManagerTest {
         // then
         assertEquals(MoveType.EN_PASSANT, move.getType());
         assertEquals(Piece.WHITE_PAWN, move.getMovedPiece());
+    }
+
+    @Test
+    public void testPerformMoveEnPassantForBlack() throws InvalidMoveException {
+        // given
+        Board board = new Board();
+        BoardManager boardManager = new BoardManager(board);
+
+        board.getMoveHistory().add(createDummyMove(board));
+        board.setPieceAt(Piece.BLACK_PAWN, new Coordinate(5, 3));
+        board.setPieceAt(Piece.WHITE_PAWN, new Coordinate(6, 1));
+
+        board.setPieceAt(Piece.WHITE_KING, new Coordinate(4, 0));
+        board.setPieceAt(Piece.BLACK_KING, new Coordinate(4, 7));
+        boardManager.performMove(new Coordinate(4, 7), new Coordinate(3, 7));
+        boardManager.performMove(new Coordinate(6, 1), new Coordinate(6, 3));
+
+        // when
+        Move move = boardManager.performMove(new Coordinate(5, 3), new Coordinate(6, 2));
+
+        // then
+        assertEquals(MoveType.EN_PASSANT, move.getType());
+        //assertEquals(Piece.WHITE_PAWN, move.getMovedPiece());
     }
 
     @Test

@@ -50,8 +50,19 @@ public abstract class PieceValidator {
         return move;
     }
 
-    void addProperMove(Set possibleMoves, Coordinate coordinate) {
-        if (isEmptySpot(coordinate, board)) {
+    public Move setEnPassantMove(Coordinate coordinate) {
+        Move move = new Move();
+        move.setType(MoveType.EN_PASSANT);
+        move.setFrom(coordinateFrom);
+        move.setTo(coordinate);
+        move.setMovedPiece(board.getPieceAt(coordinateFrom));
+        return move;
+    }
+
+    void addProperMove(Set possibleMoves, Coordinate coordinate, Boolean enPassant) {
+        if (enPassant){
+            possibleMoves.add(setEnPassantMove(coordinate));
+        } else if (isEmptySpot(coordinate, board)) {
             possibleMoves.add(setAttackMove(coordinate));
         } else if (!isPlayerPiece(coordinate)) {
             possibleMoves.add(setCaptureMove(coordinate));
