@@ -8,6 +8,8 @@ import com.capgemini.chess.algorithms.data.generated.Board;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.capgemini.chess.algorithms.implementation.validators.CoordinateValidator.isEmptySpot;
+
 public class QueenValidator extends PieceValidator {
 
     private int BOARD_START = 0;
@@ -32,7 +34,7 @@ public class QueenValidator extends PieceValidator {
                 break;
             }
             addProperMove(possibleMoves, coordinate);
-            if (!isFieldEmpty(coordinate)) {
+            if (!isEmptySpot(coordinate, board)) {
                 break;
             }
         }
@@ -44,7 +46,7 @@ public class QueenValidator extends PieceValidator {
                 break;
             }
             addProperMove(possibleMoves, coordinate);
-            if (!isFieldEmpty(coordinate)) {
+            if (!isEmptySpot(coordinate, board)) {
                 break;
             }
         }
@@ -56,7 +58,7 @@ public class QueenValidator extends PieceValidator {
                 break;
             }
             addProperMove(possibleMoves, coordinate);
-            if (!isFieldEmpty(coordinate)) {
+            if (!isEmptySpot(coordinate, board)) {
                 break;
             }
         }
@@ -68,7 +70,7 @@ public class QueenValidator extends PieceValidator {
                 break;
             }
             addProperMove(possibleMoves, coordinate);
-            if (!isFieldEmpty(coordinate)) {
+            if (!isEmptySpot(coordinate, board)) {
                 break;
             }
         }
@@ -84,7 +86,7 @@ public class QueenValidator extends PieceValidator {
                 }
                 coordY++;
                 addProperMove(possibleMoves, coordinate);
-                if (!isFieldEmpty(coordinate)) {
+                if (!isEmptySpot(coordinate, board)) {
                     break;
                 }
             }
@@ -101,7 +103,7 @@ public class QueenValidator extends PieceValidator {
                 }
                 coordY++;
                 addProperMove(possibleMoves, coordinate);
-                if (!isFieldEmpty(coordinate)) {
+                if (!isEmptySpot(coordinate, board)) {
                     break;
                 }
             }
@@ -118,7 +120,7 @@ public class QueenValidator extends PieceValidator {
                 }
                 coordY--;
                 addProperMove(possibleMoves, coordinate);
-                if (!isFieldEmpty(coordinate)) {
+                if (!isEmptySpot(coordinate, board)) {
                     break;
                 }
             }
@@ -135,7 +137,7 @@ public class QueenValidator extends PieceValidator {
                 }
                 coordY--;
                 addProperMove(possibleMoves, coordinate);
-                if (!isFieldEmpty(coordinate)) {
+                if (!isEmptySpot(coordinate, board)) {
                     break;
                 }
             }

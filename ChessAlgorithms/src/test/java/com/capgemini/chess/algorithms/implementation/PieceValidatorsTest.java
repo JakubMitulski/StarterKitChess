@@ -12,7 +12,7 @@ import java.util.Set;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class ValidatorsTest {
+public class PieceValidatorsTest {
 
     @Test
     public void shouldGetAllPossibleMovesOfBishop() {
@@ -89,5 +89,21 @@ public class ValidatorsTest {
 
         //Then
         assertEquals(22, allQueenMoves.size());
+    }
+
+    @Test
+    public void shouldGetAllPossibleMovesOfRook() {
+        //Given
+        Board board = new Board();
+        board.setPieceAt(Piece.BLACK_ROOK, new Coordinate(3, 3));
+        board.setPieceAt(Piece.WHITE_PAWN, new Coordinate(3, 2));
+        board.setPieceAt(Piece.WHITE_PAWN, new Coordinate(1, 3));
+        board.setPieceAt(Piece.BLACK_PAWN, new Coordinate(3, 6));
+
+        //When
+        Set<Move> allRookMoves = new RookValidator(new Coordinate(3, 3), board, Color.BLACK).getMoves();
+
+        //Then
+        assertEquals(9, allRookMoves.size());
     }
 }

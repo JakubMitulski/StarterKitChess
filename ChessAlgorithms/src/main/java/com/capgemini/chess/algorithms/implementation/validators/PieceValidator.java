@@ -4,10 +4,11 @@ import com.capgemini.chess.algorithms.data.Coordinate;
 import com.capgemini.chess.algorithms.data.Move;
 import com.capgemini.chess.algorithms.data.enums.Color;
 import com.capgemini.chess.algorithms.data.enums.MoveType;
-import com.capgemini.chess.algorithms.data.enums.Piece;
 import com.capgemini.chess.algorithms.data.generated.Board;
 
 import java.util.Set;
+
+import static com.capgemini.chess.algorithms.implementation.validators.CoordinateValidator.isEmptySpot;
 
 public abstract class PieceValidator {
 
@@ -23,13 +24,8 @@ public abstract class PieceValidator {
 
     public abstract Set getMoves();
 
-    public boolean isFieldEmpty(Coordinate coordinate) {
-        Piece piece = board.getPieceAt(coordinate);
-        return piece == null;
-    }
-
     public boolean isPlayerPiece(Coordinate coordinate) {
-        if (!isFieldEmpty(coordinate)) {
+        if (!isEmptySpot(coordinate, board)) {
             Color pieceColor = board.getPieceAt(coordinate).getColor();
             return pieceColor == playerColor;
         }
@@ -56,7 +52,7 @@ public abstract class PieceValidator {
 
     //set possiblemoves wyrzucic do pola lub innej zmiennej
     public Set addProperMove(Set possibleMoves, Coordinate coordinate) {
-        if (isFieldEmpty(coordinate)) {
+        if (isEmptySpot(coordinate, board)) {
             possibleMoves.add(setAttackMove(coordinate));
         } else if (!isPlayerPiece(coordinate)) {
             possibleMoves.add(setCaptureMove(coordinate));

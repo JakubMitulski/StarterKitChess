@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static com.capgemini.chess.algorithms.implementation.validators.CoordinateValidator.isCoordinateOutOfBand;
+import static com.capgemini.chess.algorithms.implementation.validators.CoordinateValidator.isEmptySpot;
 
 public class PawnValidator extends PieceValidator {
 
@@ -29,7 +30,7 @@ public class PawnValidator extends PieceValidator {
         //Move 1: first move ever, up direction, +2 spots
         if (coordY == 1 && playerColor == Color.WHITE) {
             coordinate = new Coordinate(coordX, coordY + 2);
-            if (isFieldEmpty(coordinate)) {
+            if (isEmptySpot(coordinate, board)) {
                 addProperMove(possibleMoves, coordinate);
             }
         }
@@ -37,7 +38,7 @@ public class PawnValidator extends PieceValidator {
         //Move 2: first move ever, down direction, -2 spots
         if (coordY == 6 && playerColor == Color.BLACK) {
             coordinate = new Coordinate(coordX, coordY - 2);
-            if (isFieldEmpty(coordinate)) {
+            if (isEmptySpot(coordinate, board)) {
                 addProperMove(possibleMoves, coordinate);
             }
         }
@@ -45,7 +46,7 @@ public class PawnValidator extends PieceValidator {
         //Move 3: regular move, up direction
         if (playerColor == Color.WHITE) {
             coordinate = new Coordinate(coordX, coordY + 1);
-            if (!isCoordinateOutOfBand(coordinate) && isFieldEmpty(coordinate)) {
+            if (!isCoordinateOutOfBand(coordinate) && isEmptySpot(coordinate, board)) {
                 addProperMove(possibleMoves, coordinate);
             }
         }
@@ -53,7 +54,7 @@ public class PawnValidator extends PieceValidator {
         //Move 4: regular move, down direction
         if (playerColor == Color.BLACK) {
             coordinate = new Coordinate(coordX, coordY - 1);
-            if (!isCoordinateOutOfBand(coordinate) && isFieldEmpty(coordinate)) {
+            if (!isCoordinateOutOfBand(coordinate) && isEmptySpot(coordinate, board)) {
                 addProperMove(possibleMoves, coordinate);
             }
         }
@@ -62,7 +63,7 @@ public class PawnValidator extends PieceValidator {
         if (playerColor == Color.WHITE) {
             coordinate = new Coordinate(coordX + 1, coordY + 1);
             if (!isCoordinateOutOfBand(coordinate)) {
-                if (!isFieldEmpty(coordinate) && board.getPieceAt(coordinate).getColor() != playerColor) {
+                if (!isEmptySpot(coordinate, board) && board.getPieceAt(coordinate).getColor() != playerColor) {
                     addProperMove(possibleMoves, coordinate);
                 }
             }
@@ -72,7 +73,7 @@ public class PawnValidator extends PieceValidator {
         if (playerColor == Color.WHITE) {
             coordinate = new Coordinate(coordX - 1, coordY + 1);
             if (!isCoordinateOutOfBand(coordinate)) {
-                if (!isFieldEmpty(coordinate) && board.getPieceAt(coordinate).getColor() != playerColor) {
+                if (!isEmptySpot(coordinate, board) && board.getPieceAt(coordinate).getColor() != playerColor) {
                     addProperMove(possibleMoves, coordinate);
                 }
             }
@@ -82,7 +83,7 @@ public class PawnValidator extends PieceValidator {
         if (playerColor == Color.BLACK) {
             coordinate = new Coordinate(coordX + 1, coordY - 1);
             if (!isCoordinateOutOfBand(coordinate)) {
-                if (!isFieldEmpty(coordinate) && board.getPieceAt(coordinate).getColor() != playerColor) {
+                if (!isEmptySpot(coordinate, board) && board.getPieceAt(coordinate).getColor() != playerColor) {
                     addProperMove(possibleMoves, coordinate);
                 }
             }
@@ -92,7 +93,7 @@ public class PawnValidator extends PieceValidator {
         if (playerColor == Color.BLACK) {
             coordinate = new Coordinate(coordX - 1, coordY - 1);
             if (!isCoordinateOutOfBand(coordinate)) {
-                if (!isFieldEmpty(coordinate) && board.getPieceAt(coordinate).getColor() != playerColor) {
+                if (!isEmptySpot(coordinate, board) && board.getPieceAt(coordinate).getColor() != playerColor) {
                     addProperMove(possibleMoves, coordinate);
                 }
             }
