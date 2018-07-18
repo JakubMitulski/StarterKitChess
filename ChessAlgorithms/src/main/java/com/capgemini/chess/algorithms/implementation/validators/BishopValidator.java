@@ -30,7 +30,7 @@ public class BishopValidator extends PieceValidator {
                 coordinate = new Coordinate(i + 1, coordY + 1);
                 coordY++;
                 addProperMove(possibleMoves, coordinate);
-                if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                if (!isFieldEmpty(coordinate)) {
                     break;
                 }
             }
@@ -44,7 +44,7 @@ public class BishopValidator extends PieceValidator {
                 coordinate = new Coordinate(Math.abs(i - 1), coordY + 1);
                 coordY++;
                 addProperMove(possibleMoves, coordinate);
-                if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                if (!isFieldEmpty(coordinate)) {
                     break;
                 }
             }
@@ -58,7 +58,7 @@ public class BishopValidator extends PieceValidator {
                 coordinate = new Coordinate(Math.abs(i - 1), Math.abs(coordY - 1));
                 coordY--;
                 addProperMove(possibleMoves, coordinate);
-                if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                if (!isFieldEmpty(coordinate)) {
                     break;
                 }
             }
@@ -72,7 +72,7 @@ public class BishopValidator extends PieceValidator {
                 coordinate = new Coordinate(i + 1, Math.abs(coordY - 1));
                 coordY--;
                 addProperMove(possibleMoves, coordinate);
-                if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                if (!isFieldEmpty(coordinate)) {
                     break;
                 }
             }

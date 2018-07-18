@@ -32,7 +32,7 @@ public class QueenValidator extends PieceValidator {
                 break;
             }
             addProperMove(possibleMoves, coordinate);
-            if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+            if (!isFieldEmpty(coordinate)) {
                 break;
             }
         }
@@ -44,7 +44,7 @@ public class QueenValidator extends PieceValidator {
                 break;
             }
             addProperMove(possibleMoves, coordinate);
-            if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+            if (!isFieldEmpty(coordinate)) {
                 break;
             }
         }
@@ -56,7 +56,7 @@ public class QueenValidator extends PieceValidator {
                 break;
             }
             addProperMove(possibleMoves, coordinate);
-            if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+            if (!isFieldEmpty(coordinate)) {
                 break;
             }
         }
@@ -68,7 +68,7 @@ public class QueenValidator extends PieceValidator {
                 break;
             }
             addProperMove(possibleMoves, coordinate);
-            if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+            if (!isFieldEmpty(coordinate)) {
                 break;
             }
         }
@@ -84,7 +84,7 @@ public class QueenValidator extends PieceValidator {
                 }
                 coordY++;
                 addProperMove(possibleMoves, coordinate);
-                if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                if (!isFieldEmpty(coordinate)) {
                     break;
                 }
             }
@@ -101,7 +101,7 @@ public class QueenValidator extends PieceValidator {
                 }
                 coordY++;
                 addProperMove(possibleMoves, coordinate);
-                if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                if (!isFieldEmpty(coordinate)) {
                     break;
                 }
             }
@@ -118,7 +118,7 @@ public class QueenValidator extends PieceValidator {
                 }
                 coordY--;
                 addProperMove(possibleMoves, coordinate);
-                if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                if (!isFieldEmpty(coordinate)) {
                     break;
                 }
             }
@@ -135,7 +135,7 @@ public class QueenValidator extends PieceValidator {
                 }
                 coordY--;
                 addProperMove(possibleMoves, coordinate);
-                if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+                if (!isFieldEmpty(coordinate)) {
                     break;
                 }
             }

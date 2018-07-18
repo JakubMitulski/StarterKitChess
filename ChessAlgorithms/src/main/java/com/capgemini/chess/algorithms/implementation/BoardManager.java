@@ -16,6 +16,7 @@ import static com.capgemini.chess.algorithms.implementation.validators.Coordinat
  * Class for managing of basic operations on the Chess Board.
  *
  * @author Michal Bejm
+ * @author Jakub Mitulski
  */
 public class BoardManager {
 

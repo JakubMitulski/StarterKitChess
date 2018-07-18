@@ -33,7 +33,7 @@ public class RookValidator extends PieceValidator {
                 break;
             }
             addProperMove(possibleMoves, coordinate);
-            if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+            if (!isFieldEmpty(coordinate)) {
                 break;
             }
         }
@@ -45,7 +45,7 @@ public class RookValidator extends PieceValidator {
                 break;
             }
             addProperMove(possibleMoves, coordinate);
-            if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+            if (!isFieldEmpty(coordinate)) {
                 break;
             }
         }
@@ -57,7 +57,7 @@ public class RookValidator extends PieceValidator {
                 break;
             }
             addProperMove(possibleMoves, coordinate);
-            if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+            if (!isFieldEmpty(coordinate)) {
                 break;
             }
         }
@@ -69,7 +69,7 @@ public class RookValidator extends PieceValidator {
                 break;
             }
             addProperMove(possibleMoves, coordinate);
-            if (!isPlayerPiece(coordinate) && !isFieldEmpty(coordinate)) {
+            if (!isFieldEmpty(coordinate)) {
                 break;
             }
         }
