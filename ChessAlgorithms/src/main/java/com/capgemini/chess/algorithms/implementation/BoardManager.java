@@ -21,8 +21,6 @@ import static com.capgemini.chess.algorithms.implementation.validators.Coordinat
 public class BoardManager {
 
     private Board board = new Board();
-    //    private Coordinate whiteKingCoordinate = new Coordinate(4, 0);
-//    private Coordinate blackKingCoordinate = new Coordinate(4, 7);
     private static final int BOARD_START = 0;
     private static final int BOARD_END = 7;
 

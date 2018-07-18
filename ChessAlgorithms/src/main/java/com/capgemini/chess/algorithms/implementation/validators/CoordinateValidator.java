@@ -5,10 +5,13 @@ import com.capgemini.chess.algorithms.data.generated.Board;
 
 public class CoordinateValidator {
 
+    private static final int BOARD_START = 0;
+    private static final int BOARD_END = 7;
+
     public static boolean isCoordinateOutOfBand(Coordinate coordinate) {
         int x = coordinate.getX();
         int y = coordinate.getY();
-        return x < 0 || x > 7 || y < 0 || y > 7;
+        return x < BOARD_START || x > BOARD_END || y < BOARD_START || y > BOARD_END;
     }
 
     public static boolean isCoordinateFromSameAsCoordinateTo(Coordinate from, Coordinate to) {
