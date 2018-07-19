@@ -25,12 +25,12 @@ public class BoardManager {
     private static final int BOARD_END = 7;
     private static final Coordinate INITIAL_WHITE_KING_COORDINATE = new Coordinate(4, 0);
     private static final Coordinate WHITE_KING_COORDINATE_AFTER_RIGHT_CASTLING = new Coordinate(6, 0);
-    private static final Coordinate WHITE_KING_COORDINATE_AFTER_LEFT_CASTLING = new Coordinate(1, 0);
+    private static final Coordinate WHITE_KING_COORDINATE_AFTER_LEFT_CASTLING = new Coordinate(2, 0);
     private static final Coordinate INITIAL_WHITE_R_ROOK_COORDINATE = new Coordinate(7, 0);
     private static final Coordinate INITIAL_WHITE_L_ROOK_COORDINATE = new Coordinate(0, 0);
     private static final Coordinate INITIAL_BLACK_KING_COORDINATE = new Coordinate(4, 7);
     private static final Coordinate BLACK_KING_COORDINATE_AFTER_RIGHT_CASTLING = new Coordinate(6, 7);
-    private static final Coordinate BLACK_KING_COORDINATE_AFTER_LEFT_CASTLING = new Coordinate(1, 7);
+    private static final Coordinate BLACK_KING_COORDINATE_AFTER_LEFT_CASTLING = new Coordinate(2, 7);
     private static final Coordinate INITIAL_BLACK_R_ROOK_COORDINATE = new Coordinate(7, 7);
     private static final Coordinate INITIAL_BLACK_L_ROOK_COORDINATE = new Coordinate(0, 7);
 
@@ -294,6 +294,72 @@ public class BoardManager {
         return move;
     }
 
+
+    private boolean isKingInCheck(Color kingColor) {
+        Set<Move> moves = new HashSet<>();
+
+        Coordinate kingCoordinate = getKingCoordinate(kingColor);
+
+        for (int i = BOARD_START; i <= BOARD_END; i++) {
+            for (int j = BOARD_START; j <= BOARD_END; j++) {
+
+                Coordinate coordinate = new Coordinate(i, j);
+                Piece piece = board.getPieceAt(coordinate);
+
+                if (piece != null && piece.getColor() != kingColor) {
+                    Color playerColor = piece.getColor();
+                    Set<Move> pieceMoves = callPieceValidator(coordinate, playerColor).getMoves();
+                    moves.addAll(pieceMoves);
+                }
+
+            }
+        }
+
+        Optional<Move> optionalMove = moves.stream()
+                .filter(move -> move.getTo().getX() == kingCoordinate.getX())
+                .filter(move -> move.getTo().getY() == kingCoordinate.getY())
+                .findAny();
+
+        return optionalMove.isPresent();
+    }
+
+
+    private boolean isAnyMoveValid(Color nextMoveColor) {
+
+        for (int i = BOARD_START; i <= BOARD_END; i++) {
+            for (int j = BOARD_START; j <= BOARD_END; j++) {
+
+                Coordinate coordinate = new Coordinate(i, j);
+                Piece piece = board.getPieceAt(coordinate);
+
+                if (piece != null && piece.getColor() == nextMoveColor) {
+
+                    Set<Move> moves = callPieceValidator(coordinate, nextMoveColor).getMoves();
+
+                    for (Move move : moves) {
+
+                        //Duplicate board and then perform move
+                        Board duplicatedBoard = duplicateBoard(this.board);
+                        this.board.setPieceAt(move.getMovedPiece(), move.getTo());
+                        this.board.setPieceAt(null, move.getFrom());
+
+                        //Throw exception in case of check
+                        if (!isKingInCheck(nextMoveColor)) {
+                            return true;
+                        }
+
+                        //Revert move perform
+                        this.board = duplicatedBoard;
+                    }
+
+                }
+            }
+        }
+        return false;
+    }
+
+
+    //Method returns moves validator specified for each piece
     private PieceValidator callPieceValidator(Coordinate from, Color playerColor) {
 
         PieceValidator pieceValidator;
@@ -344,6 +410,7 @@ public class BoardManager {
     }
 
 
+    //Method returns castling move if is possible
     private Move validateCastlingMove(Coordinate from, Coordinate to, Color playerColor) {
 
         PieceType pieceType = board.getPieceAt(from).getType();
@@ -413,7 +480,9 @@ public class BoardManager {
         return null;
     }
 
-    public Move setCastlingMove(Coordinate from, Coordinate to) {
+
+    //Method creates castling move
+    private Move setCastlingMove(Coordinate from, Coordinate to) {
         Move move = new Move();
         move.setType(MoveType.CASTLING);
         move.setFrom(from);
@@ -422,6 +491,8 @@ public class BoardManager {
         return move;
     }
 
+
+    //Method checks whether piece was ever moved
     private boolean wasPieceMoved(Coordinate initialPieceCoordinate) {
         List<Move> moveHistory = board.getMoveHistory();
 
@@ -429,6 +500,8 @@ public class BoardManager {
                 && move.getFrom().getY() == initialPieceCoordinate.getY());
     }
 
+
+    //Method checks whether spots during castling move would be empty
     private boolean areSpotsToPointEmpty(Coordinate from, Coordinate to) {
         int fromX = from.getX();
         int toX = to.getX();
@@ -452,6 +525,8 @@ public class BoardManager {
         return true;
     }
 
+
+    //Method checks whether spots during castling move would be checked
     private boolean areSpotsToPointInCheck(Coordinate from, Coordinate to, Color playerColor) {
         int fromX = from.getX();
         int fromY = from.getY();
@@ -476,6 +551,7 @@ public class BoardManager {
         return false;
     }
 
+    //Method checks whether spot is under check
     private boolean isSpotInCheck(Color playerColor, Coordinate spotCoordinate) {
 
         for (int i = BOARD_START; i <= BOARD_END; i++) {
@@ -499,6 +575,8 @@ public class BoardManager {
         return false;
     }
 
+
+    //Method searches for king coordinates
     private Coordinate getKingCoordinate(Color kingColor) {
         for (int i = BOARD_START; i <= BOARD_END; i++) {
             for (int j = BOARD_START; j <= BOARD_END; j++) {
@@ -515,67 +593,6 @@ public class BoardManager {
         return null;
     }
 
-    private boolean isKingInCheck(Color kingColor) {
-        Set<Move> moves = new HashSet<>();
-
-        Coordinate kingCoordinate = getKingCoordinate(kingColor);
-
-        for (int i = BOARD_START; i <= BOARD_END; i++) {
-            for (int j = BOARD_START; j <= BOARD_END; j++) {
-
-                Coordinate coordinate = new Coordinate(i, j);
-                Piece piece = board.getPieceAt(coordinate);
-
-                if (piece != null && piece.getColor() != kingColor) {
-                    Color playerColor = piece.getColor();
-                    Set<Move> pieceMoves = callPieceValidator(coordinate, playerColor).getMoves();
-                    moves.addAll(pieceMoves);
-                }
-
-            }
-        }
-
-        Optional<Move> optionalMove = moves.stream()
-                .filter(move -> move.getTo().getX() == kingCoordinate.getX())
-                .filter(move -> move.getTo().getY() == kingCoordinate.getY())
-                .findAny();
-
-        return optionalMove.isPresent();
-    }
-
-    private boolean isAnyMoveValid(Color nextMoveColor) {
-
-        for (int i = BOARD_START; i <= BOARD_END; i++) {
-            for (int j = BOARD_START; j <= BOARD_END; j++) {
-
-                Coordinate coordinate = new Coordinate(i, j);
-                Piece piece = board.getPieceAt(coordinate);
-
-                if (piece != null && piece.getColor() == nextMoveColor) {
-
-                    Set<Move> moves = callPieceValidator(coordinate, nextMoveColor).getMoves();
-
-                    for (Move move : moves) {
-
-                        //Duplicate board and then perform move
-                        Board duplicatedBoard = duplicateBoard(this.board);
-                        this.board.setPieceAt(move.getMovedPiece(), move.getTo());
-                        this.board.setPieceAt(null, move.getFrom());
-
-                        //Throw exception in case of check
-                        if (!isKingInCheck(nextMoveColor)) {
-                            return true;
-                        }
-
-                        //Revert move perform
-                        this.board = duplicatedBoard;
-                    }
-
-                }
-            }
-        }
-        return false;
-    }
 
     private Color calculateNextMoveColor() {
         if (this.board.getMoveHistory().size() % 2 == 0) {

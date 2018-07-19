@@ -126,6 +126,7 @@ public class PawnValidator extends PieceValidator {
                             && coordFromY == blackPawnYCoordinateAfterDoubledFirstMove) {
 
                         if (coordFromX == lastMove.getTo().getX() + 1) {
+
                             addProperMove(possibleMoves
                                     , new Coordinate(lastMove.getTo().getX(), lastMove.getTo().getY() + 1)
                                     , true);

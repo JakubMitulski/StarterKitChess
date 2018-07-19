@@ -287,7 +287,7 @@ public class BoardManagerTest {
         BoardManager boardManager = new BoardManager(board);
         Move move1 = boardManager.performMove(new Coordinate(3, 1), new Coordinate(3, 2));
         Move move2 = boardManager.performMove(new Coordinate(3, 6), new Coordinate(3, 5));
-        Move move = boardManager.performMove(new Coordinate(4, 0), new Coordinate(1, 0));
+        Move move = boardManager.performMove(new Coordinate(4, 0), new Coordinate(2, 0));
 
         // then
         assertEquals(MoveType.CASTLING, move.getType());
@@ -327,8 +327,7 @@ public class BoardManagerTest {
         // when
         BoardManager boardManager = new BoardManager(board);
         Move move1 = boardManager.performMove(new Coordinate(3, 1), new Coordinate(3, 2));
-        Move move = boardManager.performMove(new Coordinate(4, 7), new Coordinate(1, 7));
-
+        Move move = boardManager.performMove(new Coordinate(4, 7), new Coordinate(2, 7));
         // then
         assertEquals(MoveType.CASTLING, move.getType());
         assertEquals(Piece.BLACK_KING, move.getMovedPiece());

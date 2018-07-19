@@ -32,27 +32,9 @@ public abstract class PieceValidator {
         return false;
     }
 
-    public Move setAttackMove(Coordinate coordinate) {
+    private Move setMove(Coordinate coordinate, MoveType moveType) {
         Move move = new Move();
-        move.setType(MoveType.ATTACK);
-        move.setFrom(coordinateFrom);
-        move.setTo(coordinate);
-        move.setMovedPiece(board.getPieceAt(coordinateFrom));
-        return move;
-    }
-
-    public Move setCaptureMove(Coordinate coordinate) {
-        Move move = new Move();
-        move.setType(MoveType.CAPTURE);
-        move.setFrom(coordinateFrom);
-        move.setTo(coordinate);
-        move.setMovedPiece(board.getPieceAt(coordinateFrom));
-        return move;
-    }
-
-    public Move setEnPassantMove(Coordinate coordinate) {
-        Move move = new Move();
-        move.setType(MoveType.EN_PASSANT);
+        move.setType(moveType);
         move.setFrom(coordinateFrom);
         move.setTo(coordinate);
         move.setMovedPiece(board.getPieceAt(coordinateFrom));
@@ -61,11 +43,11 @@ public abstract class PieceValidator {
 
     void addProperMove(Set possibleMoves, Coordinate coordinate, Boolean enPassant) {
         if (enPassant) {
-            possibleMoves.add(setEnPassantMove(coordinate));
+            possibleMoves.add(setMove(coordinate, MoveType.EN_PASSANT));
         } else if (isEmptySpot(coordinate, board)) {
-            possibleMoves.add(setAttackMove(coordinate));
+            possibleMoves.add(setMove(coordinate, MoveType.ATTACK));
         } else if (!isPlayerPiece(coordinate)) {
-            possibleMoves.add(setCaptureMove(coordinate));
+            possibleMoves.add(setMove(coordinate, MoveType.CAPTURE));
         }
     }
 }
