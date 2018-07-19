@@ -23,6 +23,12 @@ public class BoardManager {
     private Board board = new Board();
     private static final int BOARD_START = 0;
     private static final int BOARD_END = 7;
+    private static final Coordinate INITIAL_WHITE_KING_COORDINATE = new Coordinate(4, 0);
+    private static final Coordinate INITIAL_WHITE_R_ROOK_COORDINATE = new Coordinate(7, 0);
+    private static final Coordinate INITIAL_WHITE_L_ROOK_COORDINATE = new Coordinate(0, 0);
+    private static final Coordinate INITIAL_BLACK_KING_COORDINATE = new Coordinate(4, 7);
+    private static final Coordinate INITIAL_BLACK_R_ROOK_COORDINATE = new Coordinate(7, 7);
+    private static final Coordinate INITIAL_BLACK_L_ROOK_COORDINATE = new Coordinate(0, 7);
 
     public BoardManager() {
         initBoard();
@@ -248,9 +254,15 @@ public class BoardManager {
 
         Color playerColor = calculateNextMoveColor();
 
-        PieceValidator pieceValidator = callPieceValidator(from, playerColor);
 
+        PieceValidator pieceValidator = callPieceValidator(from, playerColor);
         Set<Move> allPossibleMoves = pieceValidator.getMoves();
+        ///////////////////////////////////////////////////////////////////////////
+        Move castlingMove = validateCastlingMove(from, to, playerColor);
+        if (castlingMove != null) {
+            allPossibleMoves.add(castlingMove);
+        }
+        ///////////////////////////////////////////////////////////////////////////
         Optional<Move> optionalMove = allPossibleMoves.stream()
                 .filter(move -> move.getTo().getX() == to.getX())
                 .filter(move -> move.getTo().getY() == to.getY())
@@ -277,6 +289,166 @@ public class BoardManager {
 
         return move;
     }
+
+
+    ///////////////////////////////////////////////////////////////////////////
+
+
+    private Move validateCastlingMove(Coordinate from, Coordinate to, Color playerColor) {
+
+        PieceType pieceType = board.getPieceAt(from).getType();
+        if (pieceType != PieceType.KING) {
+            return null;
+        }
+
+        switch (playerColor) {
+            case WHITE:
+                if (!wasPieceMoved(INITIAL_WHITE_KING_COORDINATE))
+                    if (to.getX() == 6) {
+                        boolean wasRookMoved = wasPieceMoved(INITIAL_WHITE_R_ROOK_COORDINATE);
+                        boolean areSpotsBetweenEmpty = areSpotsToPointEmpty(INITIAL_WHITE_KING_COORDINATE, to);
+                        boolean areSpotsToPointInCheck = areSpotsToPointInCheck(INITIAL_WHITE_KING_COORDINATE
+                                , new Coordinate(6, 0)
+                                , playerColor);
+                        boolean isKingInCheck = isSpotInCheck(Color.WHITE, INITIAL_WHITE_KING_COORDINATE);
+
+                        if (!wasRookMoved && !isKingInCheck && !areSpotsToPointInCheck && areSpotsBetweenEmpty) {
+                            Move castlingMove = new Move();
+                            castlingMove.setMovedPiece(Piece.WHITE_KING);
+                            castlingMove.setFrom(from);
+                            castlingMove.setTo(to);
+                            castlingMove.setType(MoveType.CASTLING);
+                            return castlingMove;
+                        }
+                    }
+                if (!wasPieceMoved(INITIAL_WHITE_KING_COORDINATE))
+                    if (to.getX() == 1) {
+                        boolean wasRookMoved = wasPieceMoved(INITIAL_WHITE_L_ROOK_COORDINATE);
+                        boolean areSpotsBetweenEmpty = areSpotsToPointEmpty(INITIAL_WHITE_KING_COORDINATE, to);
+                        boolean areSpotsToPointInCheck = areSpotsToPointInCheck(INITIAL_WHITE_KING_COORDINATE
+                                , new Coordinate(1, 0)
+                                , playerColor);
+                        boolean isKingInCheck = isSpotInCheck(Color.WHITE, INITIAL_WHITE_KING_COORDINATE);
+
+                        if (!wasRookMoved && !isKingInCheck && !areSpotsToPointInCheck && areSpotsBetweenEmpty) {
+                            Move castlingMove = new Move();
+                            castlingMove.setMovedPiece(Piece.WHITE_KING);
+                            castlingMove.setFrom(from);
+                            castlingMove.setTo(to);
+                            castlingMove.setType(MoveType.CASTLING);
+                            return castlingMove;
+                        }
+                    }
+                break;
+
+            case BLACK:
+
+                break;
+        }
+        return null;
+    }
+
+    private boolean wasPieceMoved(Coordinate initialPieceCoordinate) {
+        List<Move> moveHistory = board.getMoveHistory();
+
+        return moveHistory.stream().anyMatch(move -> move.getFrom().getX() == initialPieceCoordinate.getX()
+                && move.getFrom().getY() == initialPieceCoordinate.getY());
+    }
+
+    private boolean areSpotsToPointEmpty(Coordinate from, Coordinate to) {
+        int fromX = from.getX();
+        int toX = to.getX();
+
+        if (fromX < toX) {
+            for (int i = fromX + 1; i <= toX; i++) {
+                boolean emptySpot = isEmptySpot(new Coordinate(i, from.getY()), board);
+                if (!emptySpot) {
+                    return false;
+                }
+            }
+        }
+        if (fromX > toX) {
+            for (int i = fromX - 1; i <= toX; i--) {
+                boolean emptySpot = isEmptySpot(new Coordinate(i, from.getY()), board);
+                if (!emptySpot) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean areSpotsToPointInCheck(Coordinate from, Coordinate to, Color playerColor) {
+        int fromX = from.getX();
+        int fromY = from.getY();
+        int toX = to.getX();
+
+        if (fromX < toX) {
+            for (int i = fromX + 1; i <= toX; i++) {
+                boolean inCheck = isSpotInCheck(playerColor, new Coordinate(i, fromY));
+                if (inCheck) {
+                    return true;
+                }
+            }
+        }
+        if (fromX > toX) {
+            for (int i = fromX - 1; i <= toX; i--) {
+                boolean inCheck = isSpotInCheck(playerColor, new Coordinate(i, fromY));
+                if (inCheck) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean isSpotInCheck(Color playerColor, Coordinate spotCoordinate) {
+        PieceValidator pieceValidator = null;
+
+        for (int i = BOARD_START; i <= BOARD_END; i++) {
+            for (int j = BOARD_START; j <= BOARD_END; j++) {
+
+                Coordinate coordinate = new Coordinate(i, j);
+                Piece piece = board.getPieceAt(coordinate);
+
+                if (piece != null && piece.getColor() != playerColor) {
+                    Color pieceColor = piece.getColor();
+
+                    switch (piece.getType()) {
+                        case PAWN:
+                            pieceValidator = new PawnValidator(coordinate, board, pieceColor);
+                            break;
+                        case ROOK:
+                            pieceValidator = new RookValidator(coordinate, board, pieceColor);
+                            break;
+                        case KNIGHT:
+                            pieceValidator = new KnightValidator(coordinate, board, pieceColor);
+                            break;
+                        case BISHOP:
+                            pieceValidator = new BishopValidator(coordinate, board, pieceColor);
+                            break;
+                        case QUEEN:
+                            pieceValidator = new QueenValidator(coordinate, board, pieceColor);
+                            break;
+                    }
+
+                    Set<Move> pieceMoves = pieceValidator.getMoves();
+
+                    boolean result = pieceMoves.stream().anyMatch(move -> move.getTo().getX() == spotCoordinate.getX()
+                            && move.getTo().getY() == spotCoordinate.getY());
+
+                    if (result) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+
+    ///////////////////////////////////////////////////////////////////////////
+
 
     private PieceValidator callPieceValidator(Coordinate from, Color playerColor) {
 
@@ -427,5 +599,4 @@ public class BoardManager {
 
         return lastNonAttackMoveIndex;
     }
-
 }

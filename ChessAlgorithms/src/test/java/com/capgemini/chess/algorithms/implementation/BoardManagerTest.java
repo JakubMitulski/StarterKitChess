@@ -253,15 +253,41 @@ public class BoardManagerTest {
     }
 
     @Test
-    public void testPerformMoveCastling() throws InvalidMoveException {
+    public void testPerformMoveCastlingForWhiteRightSide() throws InvalidMoveException {
         // given
         Board board = new Board();
         board.setPieceAt(Piece.WHITE_KING, new Coordinate(4, 0));
+        board.setPieceAt(Piece.BLACK_KING, new Coordinate(4, 7));
         board.setPieceAt(Piece.WHITE_ROOK, new Coordinate(7, 0));
+        board.setPieceAt(Piece.WHITE_PAWN, new Coordinate(3, 1));
+        board.setPieceAt(Piece.BLACK_PAWN, new Coordinate(3, 6));
 
         // when
         BoardManager boardManager = new BoardManager(board);
+        Move move1 = boardManager.performMove(new Coordinate(3, 1), new Coordinate(3, 2));
+        Move move2 = boardManager.performMove(new Coordinate(3, 6), new Coordinate(3, 5));
         Move move = boardManager.performMove(new Coordinate(4, 0), new Coordinate(6, 0));
+
+        // then
+        assertEquals(MoveType.CASTLING, move.getType());
+        assertEquals(Piece.WHITE_KING, move.getMovedPiece());
+    }
+
+    @Test
+    public void testPerformMoveCastlingForWhiteLeftSide() throws InvalidMoveException {
+        // given
+        Board board = new Board();
+        board.setPieceAt(Piece.WHITE_KING, new Coordinate(4, 0));
+        board.setPieceAt(Piece.BLACK_KING, new Coordinate(4, 7));
+        board.setPieceAt(Piece.WHITE_ROOK, new Coordinate(0, 0));
+        board.setPieceAt(Piece.WHITE_PAWN, new Coordinate(3, 1));
+        board.setPieceAt(Piece.BLACK_PAWN, new Coordinate(3, 6));
+
+        // when
+        BoardManager boardManager = new BoardManager(board);
+        Move move1 = boardManager.performMove(new Coordinate(3, 1), new Coordinate(3, 2));
+        Move move2 = boardManager.performMove(new Coordinate(3, 6), new Coordinate(3, 5));
+        Move move = boardManager.performMove(new Coordinate(4, 0), new Coordinate(1, 0));
 
         // then
         assertEquals(MoveType.CASTLING, move.getType());

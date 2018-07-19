@@ -13,6 +13,8 @@ import static com.capgemini.chess.algorithms.implementation.validators.Coordinat
 public class KingValidator extends PieceValidator {
 
     private Coordinate coordinate;
+    private Set possibleMoves = new HashSet<Move>();
+
 
     public KingValidator(Coordinate coordinateFrom, Board board, Color playerColor) {
         super(coordinateFrom, board, playerColor);
@@ -21,56 +23,55 @@ public class KingValidator extends PieceValidator {
 
     @Override
     public Set getMoves() {
-        Set possibleMoves = new HashSet<Move>();
         int coordX = coordinateFrom.getX();
         int coordY = coordinateFrom.getY();
 
         //Move 1
         coordinate = new Coordinate(coordX + 1, coordY);
         if (!isCoordinateOutOfBand(coordinate)) {
-            addProperMove(possibleMoves, coordinate, false);
+            addProperMove(possibleMoves, coordinate, false, false);
         }
 
         //Move 2
         coordinate = new Coordinate(coordX + 1, coordY + 1);
         if (!isCoordinateOutOfBand(coordinate)) {
-            addProperMove(possibleMoves, coordinate, false);
+            addProperMove(possibleMoves, coordinate, false, false);
         }
 
         //Move 3
         coordinate = new Coordinate(coordX, coordY + 1);
         if (!isCoordinateOutOfBand(coordinate)) {
-            addProperMove(possibleMoves, coordinate, false);
+            addProperMove(possibleMoves, coordinate, false, false);
         }
 
         //Move 4
         coordinate = new Coordinate(coordX - 1, coordY);
         if (!isCoordinateOutOfBand(coordinate)) {
-            addProperMove(possibleMoves, coordinate, false);
+            addProperMove(possibleMoves, coordinate, false, false);
         }
 
         //Move 5
         coordinate = new Coordinate(coordX - 1, coordY - 1);
         if (!isCoordinateOutOfBand(coordinate)) {
-            addProperMove(possibleMoves, coordinate, false);
+            addProperMove(possibleMoves, coordinate, false, false);
         }
 
         //Move 6
         coordinate = new Coordinate(coordX, coordY - 1);
         if (!isCoordinateOutOfBand(coordinate)) {
-            addProperMove(possibleMoves, coordinate, false);
+            addProperMove(possibleMoves, coordinate, false, false);
         }
 
         //Move 7
         coordinate = new Coordinate(coordX + 1, coordY - 1);
         if (!isCoordinateOutOfBand(coordinate)) {
-            addProperMove(possibleMoves, coordinate, false);
+            addProperMove(possibleMoves, coordinate, false, false);
         }
 
         //Move 8
         coordinate = new Coordinate(coordX - 1, coordY + 1);
         if (!isCoordinateOutOfBand(coordinate)) {
-            addProperMove(possibleMoves, coordinate, false);
+            addProperMove(possibleMoves, coordinate, false, false);
         }
 
         return possibleMoves;

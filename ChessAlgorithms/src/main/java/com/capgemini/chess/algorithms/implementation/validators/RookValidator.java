@@ -34,7 +34,7 @@ public class RookValidator extends PieceValidator {
             if (isPlayerPiece(coordinate)) {
                 break;
             }
-            addProperMove(possibleMoves, coordinate, false);
+            addProperMove(possibleMoves, coordinate, false, false);
             if (!isEmptySpot(coordinate, board)) {
                 break;
             }
@@ -46,7 +46,7 @@ public class RookValidator extends PieceValidator {
             if (isPlayerPiece(coordinate)) {
                 break;
             }
-            addProperMove(possibleMoves, coordinate, false);
+            addProperMove(possibleMoves, coordinate, false, false);
             if (!isEmptySpot(coordinate, board)) {
                 break;
             }
@@ -58,7 +58,7 @@ public class RookValidator extends PieceValidator {
             if (isPlayerPiece(coordinate)) {
                 break;
             }
-            addProperMove(possibleMoves, coordinate, false);
+            addProperMove(possibleMoves, coordinate, false, false);
             if (!isEmptySpot(coordinate, board)) {
                 break;
             }
@@ -70,7 +70,7 @@ public class RookValidator extends PieceValidator {
             if (isPlayerPiece(coordinate)) {
                 break;
             }
-            addProperMove(possibleMoves, coordinate, false);
+            addProperMove(possibleMoves, coordinate, false, false);
             if (!isEmptySpot(coordinate, board)) {
                 break;
             }

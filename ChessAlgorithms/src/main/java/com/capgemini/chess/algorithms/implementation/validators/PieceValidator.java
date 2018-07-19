@@ -59,8 +59,19 @@ public abstract class PieceValidator {
         return move;
     }
 
-    void addProperMove(Set possibleMoves, Coordinate coordinate, Boolean enPassant) {
-        if (enPassant){
+    public Move setCastlingMove(Coordinate coordinate) {
+        Move move = new Move();
+        move.setType(MoveType.CASTLING);
+        move.setFrom(coordinateFrom);
+        move.setTo(coordinate);
+        move.setMovedPiece(board.getPieceAt(coordinateFrom));
+        return move;
+    }
+
+    void addProperMove(Set possibleMoves, Coordinate coordinate, Boolean enPassant, Boolean castling) {
+        if (castling){
+            possibleMoves.add(setCastlingMove(coordinate));
+        } else if (enPassant) {
             possibleMoves.add(setEnPassantMove(coordinate));
         } else if (isEmptySpot(coordinate, board)) {
             possibleMoves.add(setAttackMove(coordinate));
@@ -68,5 +79,4 @@ public abstract class PieceValidator {
             possibleMoves.add(setCaptureMove(coordinate));
         }
     }
-
 }
