@@ -31,7 +31,7 @@ public class BishopValidator extends PieceValidator {
             if (coordY < BOARD_END) {
                 coordinate = new Coordinate(i + 1, coordY + 1);
                 coordY++;
-                addProperMove(possibleMoves, coordinate, false);
+                addAtackOrCaptureMove(possibleMoves, coordinate);
                 if (!isEmptySpot(coordinate, board)) {
                     break;
                 }
@@ -45,7 +45,7 @@ public class BishopValidator extends PieceValidator {
             if (coordY < BOARD_END) {
                 coordinate = new Coordinate(Math.abs(i - 1), coordY + 1);
                 coordY++;
-                addProperMove(possibleMoves, coordinate, false);
+                addAtackOrCaptureMove(possibleMoves, coordinate);
                 if (!isEmptySpot(coordinate, board)) {
                     break;
                 }
@@ -59,7 +59,7 @@ public class BishopValidator extends PieceValidator {
             if (coordY > BOARD_START) {
                 coordinate = new Coordinate(Math.abs(i - 1), Math.abs(coordY - 1));
                 coordY--;
-                addProperMove(possibleMoves, coordinate, false);
+                addAtackOrCaptureMove(possibleMoves, coordinate);
                 if (!isEmptySpot(coordinate, board)) {
                     break;
                 }
@@ -73,7 +73,7 @@ public class BishopValidator extends PieceValidator {
             if (coordY > BOARD_START) {
                 coordinate = new Coordinate(i + 1, Math.abs(coordY - 1));
                 coordY--;
-                addProperMove(possibleMoves, coordinate, false);
+                addAtackOrCaptureMove(possibleMoves, coordinate);
                 if (!isEmptySpot(coordinate, board)) {
                     break;
                 }

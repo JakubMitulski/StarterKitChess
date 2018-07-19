@@ -41,10 +41,12 @@ public abstract class PieceValidator {
         return move;
     }
 
-    void addProperMove(Set possibleMoves, Coordinate coordinate, Boolean enPassant) {
-        if (enPassant) {
-            possibleMoves.add(setMove(coordinate, MoveType.EN_PASSANT));
-        } else if (isEmptySpot(coordinate, board)) {
+    void addEnPassantMove(Set possibleMoves, Coordinate coordinate) {
+        possibleMoves.add(setMove(coordinate, MoveType.EN_PASSANT));
+    }
+
+    void addAtackOrCaptureMove(Set possibleMoves, Coordinate coordinate) {
+        if (isEmptySpot(coordinate, board)) {
             possibleMoves.add(setMove(coordinate, MoveType.ATTACK));
         } else if (!isPlayerPiece(coordinate)) {
             possibleMoves.add(setMove(coordinate, MoveType.CAPTURE));

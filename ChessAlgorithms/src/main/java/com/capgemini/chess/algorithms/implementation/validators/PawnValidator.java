@@ -37,7 +37,7 @@ public class PawnValidator extends PieceValidator {
         if (coordY == 1 && playerColor == Color.WHITE) {
             coordinate = new Coordinate(coordX, coordY + 2);
             if (isEmptySpot(coordinate, board)) {
-                addProperMove(possibleMoves, coordinate, false);
+                addAtackOrCaptureMove(possibleMoves, coordinate);
             }
         }
 
@@ -45,7 +45,7 @@ public class PawnValidator extends PieceValidator {
         if (coordY == 6 && playerColor == Color.BLACK) {
             coordinate = new Coordinate(coordX, coordY - 2);
             if (isEmptySpot(coordinate, board)) {
-                addProperMove(possibleMoves, coordinate, false);
+                addAtackOrCaptureMove(possibleMoves, coordinate);
             }
         }
 
@@ -53,7 +53,7 @@ public class PawnValidator extends PieceValidator {
         if (playerColor == Color.WHITE) {
             coordinate = new Coordinate(coordX, coordY + 1);
             if (!isCoordinateOutOfBand(coordinate) && isEmptySpot(coordinate, board)) {
-                addProperMove(possibleMoves, coordinate, false);
+                addAtackOrCaptureMove(possibleMoves, coordinate);
             }
         }
 
@@ -61,7 +61,7 @@ public class PawnValidator extends PieceValidator {
         if (playerColor == Color.BLACK) {
             coordinate = new Coordinate(coordX, coordY - 1);
             if (!isCoordinateOutOfBand(coordinate) && isEmptySpot(coordinate, board)) {
-                addProperMove(possibleMoves, coordinate, false);
+                addAtackOrCaptureMove(possibleMoves, coordinate);
             }
         }
 
@@ -70,7 +70,7 @@ public class PawnValidator extends PieceValidator {
             coordinate = new Coordinate(coordX + 1, coordY + 1);
             if (!isCoordinateOutOfBand(coordinate)) {
                 if (!isEmptySpot(coordinate, board) && board.getPieceAt(coordinate).getColor() != playerColor) {
-                    addProperMove(possibleMoves, coordinate, false);
+                    addAtackOrCaptureMove(possibleMoves, coordinate);
                 }
             }
         }
@@ -80,7 +80,7 @@ public class PawnValidator extends PieceValidator {
             coordinate = new Coordinate(coordX - 1, coordY + 1);
             if (!isCoordinateOutOfBand(coordinate)) {
                 if (!isEmptySpot(coordinate, board) && board.getPieceAt(coordinate).getColor() != playerColor) {
-                    addProperMove(possibleMoves, coordinate, false);
+                    addAtackOrCaptureMove(possibleMoves, coordinate);
                 }
             }
         }
@@ -90,7 +90,7 @@ public class PawnValidator extends PieceValidator {
             coordinate = new Coordinate(coordX + 1, coordY - 1);
             if (!isCoordinateOutOfBand(coordinate)) {
                 if (!isEmptySpot(coordinate, board) && board.getPieceAt(coordinate).getColor() != playerColor) {
-                    addProperMove(possibleMoves, coordinate, false);
+                    addAtackOrCaptureMove(possibleMoves, coordinate);
                 }
             }
         }
@@ -100,7 +100,7 @@ public class PawnValidator extends PieceValidator {
             coordinate = new Coordinate(coordX - 1, coordY - 1);
             if (!isCoordinateOutOfBand(coordinate)) {
                 if (!isEmptySpot(coordinate, board) && board.getPieceAt(coordinate).getColor() != playerColor) {
-                    addProperMove(possibleMoves, coordinate, false);
+                    addAtackOrCaptureMove(possibleMoves, coordinate);
                 }
             }
         }
@@ -127,14 +127,12 @@ public class PawnValidator extends PieceValidator {
 
                         if (coordFromX == lastMove.getTo().getX() + 1) {
 
-                            addProperMove(possibleMoves
-                                    , new Coordinate(lastMove.getTo().getX(), lastMove.getTo().getY() + 1)
-                                    , true);
+                            addEnPassantMove(possibleMoves
+                                    , new Coordinate(lastMove.getTo().getX(), lastMove.getTo().getY() + 1));
                         }
                         if (coordFromX == lastMove.getTo().getX() - 1) {
-                            addProperMove(possibleMoves
-                                    , new Coordinate(lastMove.getTo().getX(), lastMove.getTo().getY() + 1)
-                                    , true);
+                            addEnPassantMove(possibleMoves
+                                    , new Coordinate(lastMove.getTo().getX(), lastMove.getTo().getY() + 1));
                         }
                     }
                     break;
@@ -143,14 +141,12 @@ public class PawnValidator extends PieceValidator {
                             && coordFromY == whitePawnYCoordinateAfterDoubledFirstMove) {
 
                         if (coordFromX == lastMove.getTo().getX() + 1) {
-                            addProperMove(possibleMoves
-                                    , new Coordinate(lastMove.getTo().getX(), lastMove.getTo().getY() - 1)
-                                    , true);
+                            addEnPassantMove(possibleMoves
+                                    , new Coordinate(lastMove.getTo().getX(), lastMove.getTo().getY() - 1));
                         }
                         if (coordFromX == lastMove.getTo().getX() - 1) {
-                            addProperMove(possibleMoves
-                                    , new Coordinate(lastMove.getTo().getX(), lastMove.getTo().getY() - 1)
-                                    , true);
+                            addEnPassantMove(possibleMoves
+                                    , new Coordinate(lastMove.getTo().getX(), lastMove.getTo().getY() - 1));
                         }
                     }
                     break;

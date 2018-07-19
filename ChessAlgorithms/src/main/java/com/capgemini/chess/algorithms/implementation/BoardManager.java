@@ -241,6 +241,7 @@ public class BoardManager {
 
     private Move validateMove(Coordinate from, Coordinate to) throws InvalidMoveException {
 
+        //TODO przenieść walidację do odrębnej klasy wraz z walidacją w walidatorach figór
         if (isCoordinateOutOfBand(to) || isCoordinateOutOfBand(from)) {
             throw new InvalidMoveException();
         }
@@ -550,6 +551,7 @@ public class BoardManager {
         }
         return false;
     }
+
 
     //Method checks whether spot is under check
     private boolean isSpotInCheck(Color playerColor, Coordinate spotCoordinate) {
