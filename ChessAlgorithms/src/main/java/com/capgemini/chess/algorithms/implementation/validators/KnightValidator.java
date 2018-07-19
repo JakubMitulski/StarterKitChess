@@ -27,49 +27,49 @@ public class KnightValidator extends PieceValidator {
         //Move 1: right-up direction in Y-axis
         coordinate = new Coordinate(coordX + 1, coordY + 2);
         if (!isCoordinateOutOfBand(coordinate)) {
-            addProperMove(possibleMoves, coordinate, false, false);
+            addProperMove(possibleMoves, coordinate, false);
         }
 
         //Move 2: right-up direction in X-axis
         coordinate = new Coordinate(coordX + 2, coordY + 1);
         if (!isCoordinateOutOfBand(coordinate)) {
-            addProperMove(possibleMoves, coordinate, false, false);
+            addProperMove(possibleMoves, coordinate, false);
         }
 
         //Move 3: right-down direction in Y-axis
         coordinate = new Coordinate(coordX + 1, coordY - 2);
         if (!isCoordinateOutOfBand(coordinate)) {
-            addProperMove(possibleMoves, coordinate, false, false);
+            addProperMove(possibleMoves, coordinate, false);
         }
 
         //Move 4: right-down direction in X-axis
         coordinate = new Coordinate(coordX + 2, coordY - 1);
         if (!isCoordinateOutOfBand(coordinate)) {
-            addProperMove(possibleMoves, coordinate, false, false);
+            addProperMove(possibleMoves, coordinate, false);
         }
 
         //Move 5: left-up direction in Y-axis
         coordinate = new Coordinate(coordX - 1, coordY + 2);
         if (!isCoordinateOutOfBand(coordinate)) {
-            addProperMove(possibleMoves, coordinate, false, false);
+            addProperMove(possibleMoves, coordinate, false);
         }
 
         //Move 6: left-up direction in X-axis
         coordinate = new Coordinate(coordX - 2, coordY + 1);
         if (!isCoordinateOutOfBand(coordinate)) {
-            addProperMove(possibleMoves, coordinate, false, false);
+            addProperMove(possibleMoves, coordinate, false);
         }
 
         //Move 7: left-down direction in Y-axis
         coordinate = new Coordinate(coordX - 1, coordY - 2);
         if (!isCoordinateOutOfBand(coordinate)) {
-            addProperMove(possibleMoves, coordinate, false, false);
+            addProperMove(possibleMoves, coordinate, false);
         }
 
         //Move 8: left-down direction in X-axis
         coordinate = new Coordinate(coordX - 2, coordY - 1);
         if (!isCoordinateOutOfBand(coordinate)) {
-            addProperMove(possibleMoves, coordinate, false, false);
+            addProperMove(possibleMoves, coordinate, false);
         }
 
         return possibleMoves;

@@ -295,6 +295,46 @@ public class BoardManagerTest {
     }
 
     @Test
+    public void testPerformMoveCastlingForBlackRightSide() throws InvalidMoveException {
+        // given
+        Board board = new Board();
+        board.setPieceAt(Piece.WHITE_KING, new Coordinate(4, 0));
+        board.setPieceAt(Piece.BLACK_KING, new Coordinate(4, 7));
+        board.setPieceAt(Piece.BLACK_ROOK, new Coordinate(7, 7));
+        board.setPieceAt(Piece.WHITE_PAWN, new Coordinate(3, 1));
+        board.setPieceAt(Piece.BLACK_PAWN, new Coordinate(3, 6));
+
+        // when
+        BoardManager boardManager = new BoardManager(board);
+        Move move1 = boardManager.performMove(new Coordinate(3, 1), new Coordinate(3, 2));
+        Move move = boardManager.performMove(new Coordinate(4, 7), new Coordinate(6, 7));
+
+        // then
+        assertEquals(MoveType.CASTLING, move.getType());
+        assertEquals(Piece.BLACK_KING, move.getMovedPiece());
+    }
+
+    @Test
+    public void testPerformMoveCastlingForBlackLeftSide() throws InvalidMoveException {
+        // given
+        Board board = new Board();
+        board.setPieceAt(Piece.WHITE_KING, new Coordinate(4, 0));
+        board.setPieceAt(Piece.BLACK_KING, new Coordinate(4, 7));
+        board.setPieceAt(Piece.BLACK_ROOK, new Coordinate(0, 7));
+        board.setPieceAt(Piece.WHITE_PAWN, new Coordinate(3, 1));
+        board.setPieceAt(Piece.BLACK_PAWN, new Coordinate(3, 6));
+
+        // when
+        BoardManager boardManager = new BoardManager(board);
+        Move move1 = boardManager.performMove(new Coordinate(3, 1), new Coordinate(3, 2));
+        Move move = boardManager.performMove(new Coordinate(4, 7), new Coordinate(1, 7));
+
+        // then
+        assertEquals(MoveType.CASTLING, move.getType());
+        assertEquals(Piece.BLACK_KING, move.getMovedPiece());
+    }
+
+    @Test
     public void testPerformMoveEnPassantForWhite() throws InvalidMoveException {
         // given
         Board board = new Board();

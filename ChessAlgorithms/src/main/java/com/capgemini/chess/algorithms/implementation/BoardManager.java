@@ -24,9 +24,13 @@ public class BoardManager {
     private static final int BOARD_START = 0;
     private static final int BOARD_END = 7;
     private static final Coordinate INITIAL_WHITE_KING_COORDINATE = new Coordinate(4, 0);
+    private static final Coordinate WHITE_KING_COORDINATE_AFTER_RIGHT_CASTLING = new Coordinate(6, 0);
+    private static final Coordinate WHITE_KING_COORDINATE_AFTER_LEFT_CASTLING = new Coordinate(1, 0);
     private static final Coordinate INITIAL_WHITE_R_ROOK_COORDINATE = new Coordinate(7, 0);
     private static final Coordinate INITIAL_WHITE_L_ROOK_COORDINATE = new Coordinate(0, 0);
     private static final Coordinate INITIAL_BLACK_KING_COORDINATE = new Coordinate(4, 7);
+    private static final Coordinate BLACK_KING_COORDINATE_AFTER_RIGHT_CASTLING = new Coordinate(6, 7);
+    private static final Coordinate BLACK_KING_COORDINATE_AFTER_LEFT_CASTLING = new Coordinate(1, 7);
     private static final Coordinate INITIAL_BLACK_R_ROOK_COORDINATE = new Coordinate(7, 7);
     private static final Coordinate INITIAL_BLACK_L_ROOK_COORDINATE = new Coordinate(0, 7);
 
@@ -257,12 +261,12 @@ public class BoardManager {
 
         PieceValidator pieceValidator = callPieceValidator(from, playerColor);
         Set<Move> allPossibleMoves = pieceValidator.getMoves();
-        ///////////////////////////////////////////////////////////////////////////
+
         Move castlingMove = validateCastlingMove(from, to, playerColor);
         if (castlingMove != null) {
             allPossibleMoves.add(castlingMove);
         }
-        ///////////////////////////////////////////////////////////////////////////
+
         Optional<Move> optionalMove = allPossibleMoves.stream()
                 .filter(move -> move.getTo().getX() == to.getX())
                 .filter(move -> move.getTo().getY() == to.getY())
@@ -290,8 +294,54 @@ public class BoardManager {
         return move;
     }
 
+    private PieceValidator callPieceValidator(Coordinate from, Color playerColor) {
 
-    ///////////////////////////////////////////////////////////////////////////
+        PieceValidator pieceValidator;
+        Piece piece = board.getPieceAt(from);
+
+        switch (piece.getType()) {
+            case PAWN:
+                pieceValidator = new PawnValidator(from, board, playerColor);
+                break;
+            case ROOK:
+                pieceValidator = new RookValidator(from, board, playerColor);
+                break;
+            case KNIGHT:
+                pieceValidator = new KnightValidator(from, board, playerColor);
+                break;
+            case BISHOP:
+                pieceValidator = new BishopValidator(from, board, playerColor);
+                break;
+            case KING:
+                pieceValidator = new KingValidator(from, board, playerColor);
+                break;
+            case QUEEN:
+                pieceValidator = new QueenValidator(from, board, playerColor);
+                break;
+            default:
+                pieceValidator = null;
+        }
+
+        return pieceValidator;
+    }
+
+
+    //Method duplicates board to allow king-check validation before move perform
+    private Board duplicateBoard(Board board) {
+        Board duplicatedBoard = new Board();
+        duplicatedBoard.setMoveHistory(board.getMoveHistory());
+        duplicatedBoard.setState(board.getState());
+
+        for (int i = BOARD_START; i <= BOARD_END; i++) {
+            for (int j = BOARD_START; j <= BOARD_END; j++) {
+                Coordinate coordinate = new Coordinate(i, j);
+                Piece piece = board.getPieceAt(coordinate);
+                duplicatedBoard.setPieceAt(piece, coordinate);
+            }
+        }
+
+        return duplicatedBoard;
+    }
 
 
     private Move validateCastlingMove(Coordinate from, Coordinate to, Color playerColor) {
@@ -304,48 +354,72 @@ public class BoardManager {
         switch (playerColor) {
             case WHITE:
                 if (!wasPieceMoved(INITIAL_WHITE_KING_COORDINATE))
-                    if (to.getX() == 6) {
+                    if (to.getX() == WHITE_KING_COORDINATE_AFTER_RIGHT_CASTLING.getX()) {
                         boolean wasRookMoved = wasPieceMoved(INITIAL_WHITE_R_ROOK_COORDINATE);
                         boolean areSpotsBetweenEmpty = areSpotsToPointEmpty(INITIAL_WHITE_KING_COORDINATE, to);
                         boolean areSpotsToPointInCheck = areSpotsToPointInCheck(INITIAL_WHITE_KING_COORDINATE
-                                , new Coordinate(6, 0)
+                                , WHITE_KING_COORDINATE_AFTER_RIGHT_CASTLING
                                 , playerColor);
                         boolean isKingInCheck = isSpotInCheck(Color.WHITE, INITIAL_WHITE_KING_COORDINATE);
 
                         if (!wasRookMoved && !isKingInCheck && !areSpotsToPointInCheck && areSpotsBetweenEmpty) {
-                            Move castlingMove = new Move();
-                            castlingMove.setMovedPiece(Piece.WHITE_KING);
-                            castlingMove.setFrom(from);
-                            castlingMove.setTo(to);
-                            castlingMove.setType(MoveType.CASTLING);
-                            return castlingMove;
+                            return setCastlingMove(from, to);
                         }
                     }
                 if (!wasPieceMoved(INITIAL_WHITE_KING_COORDINATE))
-                    if (to.getX() == 1) {
+                    if (to.getX() == WHITE_KING_COORDINATE_AFTER_LEFT_CASTLING.getX()) {
                         boolean wasRookMoved = wasPieceMoved(INITIAL_WHITE_L_ROOK_COORDINATE);
                         boolean areSpotsBetweenEmpty = areSpotsToPointEmpty(INITIAL_WHITE_KING_COORDINATE, to);
                         boolean areSpotsToPointInCheck = areSpotsToPointInCheck(INITIAL_WHITE_KING_COORDINATE
-                                , new Coordinate(1, 0)
+                                , WHITE_KING_COORDINATE_AFTER_LEFT_CASTLING
                                 , playerColor);
                         boolean isKingInCheck = isSpotInCheck(Color.WHITE, INITIAL_WHITE_KING_COORDINATE);
 
                         if (!wasRookMoved && !isKingInCheck && !areSpotsToPointInCheck && areSpotsBetweenEmpty) {
-                            Move castlingMove = new Move();
-                            castlingMove.setMovedPiece(Piece.WHITE_KING);
-                            castlingMove.setFrom(from);
-                            castlingMove.setTo(to);
-                            castlingMove.setType(MoveType.CASTLING);
-                            return castlingMove;
+                            return setCastlingMove(from, to);
                         }
                     }
                 break;
 
             case BLACK:
+                if (!wasPieceMoved(INITIAL_BLACK_KING_COORDINATE))
+                    if (to.getX() == BLACK_KING_COORDINATE_AFTER_RIGHT_CASTLING.getX()) {
+                        boolean wasRookMoved = wasPieceMoved(INITIAL_BLACK_R_ROOK_COORDINATE);
+                        boolean areSpotsBetweenEmpty = areSpotsToPointEmpty(INITIAL_BLACK_KING_COORDINATE, to);
+                        boolean areSpotsToPointInCheck = areSpotsToPointInCheck(INITIAL_BLACK_KING_COORDINATE
+                                , BLACK_KING_COORDINATE_AFTER_RIGHT_CASTLING
+                                , playerColor);
+                        boolean isKingInCheck = isSpotInCheck(Color.BLACK, INITIAL_BLACK_KING_COORDINATE);
 
+                        if (!wasRookMoved && !isKingInCheck && !areSpotsToPointInCheck && areSpotsBetweenEmpty) {
+                            return setCastlingMove(from, to);
+                        }
+                    }
+                if (!wasPieceMoved(INITIAL_BLACK_KING_COORDINATE))
+                    if (to.getX() == BLACK_KING_COORDINATE_AFTER_LEFT_CASTLING.getX()) {
+                        boolean wasRookMoved = wasPieceMoved(INITIAL_BLACK_L_ROOK_COORDINATE);
+                        boolean areSpotsBetweenEmpty = areSpotsToPointEmpty(INITIAL_BLACK_KING_COORDINATE, to);
+                        boolean areSpotsToPointInCheck = areSpotsToPointInCheck(INITIAL_BLACK_KING_COORDINATE
+                                , BLACK_KING_COORDINATE_AFTER_LEFT_CASTLING
+                                , playerColor);
+                        boolean isKingInCheck = isSpotInCheck(Color.BLACK, INITIAL_BLACK_KING_COORDINATE);
+
+                        if (!wasRookMoved && !isKingInCheck && !areSpotsToPointInCheck && areSpotsBetweenEmpty) {
+                            return setCastlingMove(from, to);
+                        }
+                    }
                 break;
         }
         return null;
+    }
+
+    public Move setCastlingMove(Coordinate from, Coordinate to) {
+        Move move = new Move();
+        move.setType(MoveType.CASTLING);
+        move.setFrom(from);
+        move.setTo(to);
+        move.setMovedPiece(board.getPieceAt(from));
+        return move;
     }
 
     private boolean wasPieceMoved(Coordinate initialPieceCoordinate) {
@@ -403,7 +477,6 @@ public class BoardManager {
     }
 
     private boolean isSpotInCheck(Color playerColor, Coordinate spotCoordinate) {
-        PieceValidator pieceValidator = null;
 
         for (int i = BOARD_START; i <= BOARD_END; i++) {
             for (int j = BOARD_START; j <= BOARD_END; j++) {
@@ -412,27 +485,7 @@ public class BoardManager {
                 Piece piece = board.getPieceAt(coordinate);
 
                 if (piece != null && piece.getColor() != playerColor) {
-                    Color pieceColor = piece.getColor();
-
-                    switch (piece.getType()) {
-                        case PAWN:
-                            pieceValidator = new PawnValidator(coordinate, board, pieceColor);
-                            break;
-                        case ROOK:
-                            pieceValidator = new RookValidator(coordinate, board, pieceColor);
-                            break;
-                        case KNIGHT:
-                            pieceValidator = new KnightValidator(coordinate, board, pieceColor);
-                            break;
-                        case BISHOP:
-                            pieceValidator = new BishopValidator(coordinate, board, pieceColor);
-                            break;
-                        case QUEEN:
-                            pieceValidator = new QueenValidator(coordinate, board, pieceColor);
-                            break;
-                    }
-
-                    Set<Move> pieceMoves = pieceValidator.getMoves();
+                    Set<Move> pieceMoves = callPieceValidator(coordinate, playerColor).getMoves();
 
                     boolean result = pieceMoves.stream().anyMatch(move -> move.getTo().getX() == spotCoordinate.getX()
                             && move.getTo().getY() == spotCoordinate.getY());
@@ -446,59 +499,21 @@ public class BoardManager {
         return false;
     }
 
-
-    ///////////////////////////////////////////////////////////////////////////
-
-
-    private PieceValidator callPieceValidator(Coordinate from, Color playerColor) {
-
-        PieceValidator pieceValidator;
-        Piece piece = board.getPieceAt(from);
-
-        switch (piece.getType()) {
-            case PAWN:
-                pieceValidator = new PawnValidator(from, board, playerColor);
-                break;
-            case ROOK:
-                pieceValidator = new RookValidator(from, board, playerColor);
-                break;
-            case KNIGHT:
-                pieceValidator = new KnightValidator(from, board, playerColor);
-                break;
-            case BISHOP:
-                pieceValidator = new BishopValidator(from, board, playerColor);
-                break;
-            case KING:
-                pieceValidator = new KingValidator(from, board, playerColor);
-                break;
-            case QUEEN:
-                pieceValidator = new QueenValidator(from, board, playerColor);
-                break;
-            default:
-                pieceValidator = null;
-        }
-
-        return pieceValidator;
-    }
-
-
-    //Method duplicates board to allow king-check validation before move perform
-    private Board duplicateBoard(Board board) {
-        Board duplicatedBoard = new Board();
-        duplicatedBoard.setMoveHistory(board.getMoveHistory());
-        duplicatedBoard.setState(board.getState());
-
+    private Coordinate getKingCoordinate(Color kingColor) {
         for (int i = BOARD_START; i <= BOARD_END; i++) {
             for (int j = BOARD_START; j <= BOARD_END; j++) {
+
                 Coordinate coordinate = new Coordinate(i, j);
-                Piece piece = board.getPieceAt(coordinate);
-                duplicatedBoard.setPieceAt(piece, coordinate);
+                if (!isEmptySpot(coordinate, board)) {
+                    Piece piece = board.getPieceAt(coordinate);
+                    if (piece.getType() == PieceType.KING && piece.getColor() == kingColor) {
+                        return coordinate;
+                    }
+                }
             }
         }
-
-        return duplicatedBoard;
+        return null;
     }
-
 
     private boolean isKingInCheck(Color kingColor) {
         Set<Move> moves = new HashSet<>();
@@ -526,22 +541,6 @@ public class BoardManager {
                 .findAny();
 
         return optionalMove.isPresent();
-    }
-
-    private Coordinate getKingCoordinate(Color kingColor) {
-        for (int i = BOARD_START; i <= BOARD_END; i++) {
-            for (int j = BOARD_START; j <= BOARD_END; j++) {
-
-                Coordinate coordinate = new Coordinate(i, j);
-                if (!isEmptySpot(coordinate, board)) {
-                    Piece piece = board.getPieceAt(coordinate);
-                    if (piece.getType() == PieceType.KING && piece.getColor() == kingColor) {
-                        return coordinate;
-                    }
-                }
-            }
-        }
-        return null;
     }
 
     private boolean isAnyMoveValid(Color nextMoveColor) {
